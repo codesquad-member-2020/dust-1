@@ -3,9 +3,9 @@
 
 ## Members
 
-- BackEnd 🎒: [Jay](jay), [Dion](dion)
-- FrontEnd 🐥: [Ed](ed)
-- iOS 🧞: [Lena](lena)
+- BackEnd 🎒: [Jay][jay], [Dion][dion]
+- FrontEnd 🐥: [Ed][ed]
+- iOS 🧞: [Lena][lena]
 
 ## Index
 
