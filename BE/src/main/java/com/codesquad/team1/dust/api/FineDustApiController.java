@@ -37,4 +37,14 @@ public class FineDustApiController {
         return dustStatus;
     }
 
+    @GetMapping("/location/@={latitude},{longitude}")
+    public StationLocation showNearestMeasureStationLocation(@PathVariable String latitude, @PathVariable String longitude) {
+        StationLocation stationLocation = new StationLocation("강남구", "서울 강남구 학동로 426강남구청 별관 1동");
+
+        log.debug("위도: {}, 경도: {}", latitude, longitude);
+        log.debug("stationLocation: {}", stationLocation);
+
+        return stationLocation;
+    }
+
 }
