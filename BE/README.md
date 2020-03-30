@@ -18,3 +18,13 @@
     }
 ]
 ```
+
+`GET` 요청으로 `/강남구/dust-status`를 호출하면 아래와 같은 데이터를 반환합니다. (Mock)
+
+```json
+{
+    "pm10Grade1h": 2,
+    "pm10Value": 74,
+    "location": "강남구"
+}
+```
