@@ -1,9 +1,11 @@
 package com.codesquad.team1.dust.api;
 
+import com.codesquad.team1.dust.domain.DustStatus;
 import com.codesquad.team1.dust.domain.StationLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -24,6 +26,15 @@ public class FineDustApiController {
         log.debug("list: {}", stationLocations);
 
         return stationLocations;
+    }
+
+    @GetMapping("/{stationName}/dust-status")
+    public DustStatus showDustStatus(@PathVariable String stationName) {
+        DustStatus dustStatus = new DustStatus(2, 74, stationName);
+
+        log.debug("dustStatus: {}", dustStatus);
+
+        return dustStatus;
     }
 
 }
