@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: $grey-2;
+  color: $black;
+}
+
+.wrap {
+  width: 100%;
+  max-width: $MAX_WIDTH;
+  margin: 0 auto;
+}
+
+.dust-wrap,
+.forecast-wrap {
+  width: 100%;
+  float: left;
+  box-sizing: border-box;
+  padding: 0 $wrap-padding $wrap-padding-bottom $wrap-padding;
+}

@@ -3,9 +3,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: ["@babel/polyfill", "./src/js/main.js", "./src/sass/main.scss"],
+  mode: "development",
+  entry: ["@babel/polyfill", "./src/js/main.js", "./src/scss/main.scss"],
   output: {
-    path: path.resolve(__dirname, "dist/js"),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
   module: {
@@ -28,22 +29,15 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
-    devServer: {
-      contentBase: path.join(__dirname, "dist"),
-      compress: true,
-      port: 9000,
-    },
   },
-  plugins: [
-    new MiniCssExtractPlugin({ filename: "css/style.css" }),
-    new HtmlWebpackPlugin({
-      minify: {
-        collapseWhitespace: true,
-      },
-      hash: true,
-      template: "./src/index.html",
-    }),
-  ],
-  devtool: "source-map",
-  mode: "development",
+  plugins: [new MiniCssExtractPlugin({ filename: "css/style.css" }), new HtmlWebpackPlugin({ template: "./src/index.html" })],
+  devServer: {
+    host: "127.0.0.1",
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    hot: true,
+    inline: true,
+    port: 9000,
+    open: true,
+  },
 };

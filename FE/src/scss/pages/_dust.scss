@@ -1,0 +1,54 @@
+.dust-wrap {
+  display: none;
+  background-color: $blue;
+}
+
+.dust {
+  text-align: center;
+  color: $white;
+}
+
+.dust-emoji {
+  font-size: 10rem;
+}
+
+.dust-grade {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dust-value-wrap {
+  margin-bottom: 1rem;
+}
+
+.dust-value,
+.dust-time {
+  font-size: 1.25rem;
+  margin: 0 0.5rem;
+}
+
+.dust-station {
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.station-name {
+  font-weight: bold;
+}
+
+.dust-graph-wrap {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: $white;
+  border: 1px solid $grey-1;
+  border-radius: $border-radius;
+}
+
+.dust-graph-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
