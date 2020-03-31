@@ -4,6 +4,8 @@
 
 ## API Manual
 
+접속주소/swagger-ui.html의 fine-dust-api-controller를 이용하면 테스트도 가능합니다.
+
 `GET` 요청으로 `/locations` 를 호출하면 아래와 같은 데이터를 반환합니다. (Mock)
 
 ```json
