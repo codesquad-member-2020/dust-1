@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>미세먼지 앱</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tab-dust">미세먼지</button>
+      <button class="tab-forecast">예보</button>
+    </div>
+    <div class="wrap">
+      <header><h1>미세먼지 앱</h1></header>
+      <div class="dust-wrap">
+        <div class="dust">
+          <h2 class="dust-title">미세먼지 현황</h2>
+          <span class="dust-emoji">😀</span>
+          <h3 class="dust-grade">좋음</h3>
+          <div class="dust-value-wrap">
+            <span class="dust-value">45𝜇g/m³</span>
+            <span class="dust-time">오늘 16:00</span>
+          </div>
+          <span class="dust-station"><strong class="station-name">강남구</strong> 측정소 기준</span>
+        </div>
+        <div class="dust-graph-wrap">
+          <h3 class="dust-graph-title">시간별 정보</h3>
+          <canvas id="dust-graph"></canvas>
+        </div>
+      </div>
+      <div class="forecast-wrap">
+        <div class="forecast">
+          <h2 class="forecast-title">미세먼지 예보</h2>
+          <div class="forecast-images">
+            <img src="http://www.airkorea.or.kr/file/viewImage/?atch_id=56593" alt="미세먼지 예보 사진" />
+          </div>
+          <p class="forecast-inform-overall">
+            ○[미세먼지] 수도권·강원영서·충청권·호남권·부산·경남·제주권은 '나쁨', 그 밖의 권역은 '보통'으로 예상됨. 다만, 그 밖의 권역에서도 '나쁨' 수준의 농도가 일시적으로 나타날 수 있음.
+          </p>
+          <p class="forecast-inform-grade">
+            서울 : 나쁨,제주 : 나쁨,전남 : 나쁨,전북 : 나쁨,광주 : 나쁨,경남 : 나쁨,경북 : 보통,울산 : 보통,대구 : 보통,부산 : 나쁨,충남 : 나쁨,충북 : 나쁨,세종 : 나쁨,대전 : 나쁨,영동 : 보통,영서 :
+            나쁨,경기남부 : 나쁨,경기북부 : 나쁨,인천 : 나쁨
+          </p>
+        </div>
+        <div class="progress-bar-wrap">
+          <button class="play-btn">
+            <span class="material-icons">
+              play_arrow
+              <!--or pause-->
+            </span>
+          </button>
+          <div class="progress-bar">
+            <div class="current-progress"></div>
+            <button class="control-btn"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

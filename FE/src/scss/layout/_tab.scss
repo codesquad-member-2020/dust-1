@@ -1,0 +1,19 @@
+.tab {
+  width: 100%;
+  max-width: $MAX_WIDTH;
+  height: $tab-height;
+  display: flex;
+  border-bottom: 1px solid $grey-1;
+  button {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.125rem;
+    &.active {
+      font-weight: bold;
+      color: $blue;
+      text-decoration: underline;
+    }
+  }
+}
