@@ -1,21 +1,21 @@
 .dust-graph {
   height: 100%;
   overflow-y: scroll;
+  touch-action: pan-y;
 }
 
-.column-wrap {
+.graph-wrap {
   position: relative;
-  box-sizing: border-box;
   width: 100%;
   height: $graph-height;
-  & + .column-wrap {
+  box-sizing: border-box;
+  & + .graph-wrap {
     border-top: 1px solid $white;
   }
 }
 
-.column {
+.graph {
   position: absolute;
-  box-sizing: border-box;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,8 +24,9 @@
 
   .value {
     position: absolute;
-    right: 5px;
-    top: 1px;
+    top: 0;
+    right: 0;
+    transform: translate(-4px, 1px);
     color: $white;
   }
 

@@ -1,8 +1,8 @@
-import { _q } from "../utils/utils";
+import { _q, getObjLength } from "../utils/utils";
 import { CLASS_NAME, MAX_DUST_VALUE } from "../utils/constants";
 import { DUST_STATUS } from "../utils/mockData";
 
-const graphElement = _q(`.${CLASS_NAME.graph}`);
+export const graphsElement = _q(`.${CLASS_NAME.graphs}`);
 
 const getGradeClassName = grade => {
   const gradeClass = {
@@ -19,15 +19,27 @@ const calculateGraphWidth = dustValue => {
   return percentage > 100 ? 100 : percentage;
 };
 
-const graphContents = DUST_STATUS.reduce((contents, data) => {
-  contents += `<div class="${CLASS_NAME.graphColumnWrap}" style="width:${calculateGraphWidth(data.pm10Value)}%">
-  <div class="${CLASS_NAME.graphColumn} ${getGradeClassName(data.pm10Grade1h)}">
-  <span class="${CLASS_NAME.dustValue}">${data.pm10Value}</span></div></div>`;
-  return contents;
-}, "");
+const graphsContents = () =>
+  DUST_STATUS.reduce((graphElement, dustData) => {
+    graphElement += `<div class="${CLASS_NAME.graphWrap}" style="width:${calculateGraphWidth(dustData.pm10Value)}%">
+  <div class="${CLASS_NAME.graph} ${getGradeClassName(dustData.pm10Grade1h)}">
+  <span class="${CLASS_NAME.dustValue}">${dustData.pm10Value}</span></div></div>`;
+    return graphElement;
+  }, "");
 
-const renderGraph = () => {
-  graphElement.innerHTML = `${graphContents}<div class="${CLASS_NAME.placeholder}"></div>`;
+export const renderGraph = () => {
+  graphsElement.innerHTML = `${graphsContents(DUST_STATUS)}<div class="${CLASS_NAME.placeholder}"></div>`;
 };
 
-renderGraph();
+export const getScrollTopGraphData = event => {
+  const graphHeight = _q(`.${CLASS_NAME.graph}`).offsetHeight;
+  const { scrollTop } = event.srcElement;
+  for (let index = 1; index < getObjLength(DUST_STATUS); index += 1) {
+    const prevGraphScrollTop = graphHeight * (index - 1);
+    const graphScrollTop = graphHeight * index;
+    if (scrollTop >= prevGraphScrollTop && scrollTop < graphScrollTop) {
+      return DUST_STATUS[index - 1];
+    }
+  }
+  return DUST_STATUS[getObjLength(DUST_STATUS) - 1];
+};

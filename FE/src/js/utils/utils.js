@@ -13,3 +13,5 @@ export const toggleClass = (target = null, addClassName, removeClassName) => {
   addClass(target, addClassName);
   removeClass(target, removeClassName);
 };
+
+export const getObjLength = obj => Object.keys(obj).length;

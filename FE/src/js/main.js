@@ -1,4 +1,5 @@
-import "./utils/utils";
-import "./utils/constants";
+import { graphsElement, renderGraph, getScrollTopGraphData } from "./components/graph";
 
-import "./components/graph";
+renderGraph();
+
+graphsElement.addEventListener("scroll", event => getScrollTopGraphData(event));

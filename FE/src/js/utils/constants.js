@@ -1,7 +1,7 @@
 export const CLASS_NAME = {
-  graph: "dust-graph",
-  graphColumnWrap: "column-wrap",
-  graphColumn: "column",
+  graphs: "dust-graph",
+  graphWrap: "graph-wrap",
+  graph: "graph",
   dustValue: "value",
   placeholder: "placeholder",
   grade1: "good",
