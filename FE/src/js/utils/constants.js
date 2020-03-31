@@ -12,6 +12,8 @@ export const CLASS_NAME = {
 
 export const MAX_DUST_VALUE = 200;
 
+export const MIN_PERCENTAGE = 5;
+
 export const GPS_ALERT_MESSAGE = "GPS가 지원되지 않습니다. 측정소는 강남구로 설정됩니다.";
 
 export const URL = {

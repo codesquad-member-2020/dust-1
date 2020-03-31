@@ -1,6 +1,8 @@
 import { URL } from "../utils/constants";
 import { graphsElement, renderGraph, getScrollTopGraphData } from "./graph";
 
+const isDataValid = data => data.pm10Value >= 0;
+
 export default {
   getNearestDustStation: (latitude, longitude) => {
     fetch(URL.nearestDustStation(latitude, longitude), {
@@ -16,8 +18,9 @@ export default {
       method: "GET",
     })
       .then(response => response.json())
-      .then(json => json.filter(data => data.pm10Grade1h >= 0))
+      .then(json => json.filter(data => isDataValid(data)))
       .then(dustData => {
+        console.log(dustData);
         renderGraph(dustData);
         graphsElement.addEventListener("scroll", event => getScrollTopGraphData(event, dustData));
       })

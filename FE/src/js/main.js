@@ -6,7 +6,7 @@ import { renderGraph } from "./components/graph";
 
 const gps = navigator.geolocation;
 
-renderGraph(DUST_STATUS);
+// renderGraph(DUST_STATUS);
 
 const successGetCurrentPosition = position => {
   const { latitude, longitude } = position.coords;
