@@ -1,21 +1,33 @@
 .forecast-wrap {
-  display: none;
+  display: flex;
+  flex-direction: column;
   background-color: $white;
 }
 
+.forecast {
+  box-sizing: border-box;
+  padding-top: 2rem;
+}
+
 .forecast-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
   text-align: center;
 }
 
 .forecast-images {
   text-align: center;
-  margin-bottom: 1rem;
   img {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100%;
     max-width: 100%;
+    display: block;
     box-sizing: border-box;
     border: 1px solid $grey-1;
+    &.hidden {
+      display: none;
+    }
   }
 }
 
@@ -26,6 +38,7 @@
 
 .forecast-inform-overall {
   font-size: 1.125rem;
+  margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
 

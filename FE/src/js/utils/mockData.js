@@ -5,7 +5,7 @@ export const DUST_STATUS = [
     pm10Value: "36",
   },
   {
-    pm10Grade1h: "3",
+    pm10Grade1h: "-1",
     dateTime: "2020-03-30 10:00",
     pm10Value: "100",
   },
@@ -20,12 +20,12 @@ export const DUST_STATUS = [
     pm10Value: "180",
   },
   {
-    pm10Grade1h: "4",
+    pm10Grade1h: "-1",
     dateTime: "2020-03-30 07:00",
     pm10Value: "38",
   },
   {
-    pm10Grade1h: "1",
+    pm10Grade1h: "-1",
     dateTime: "2020-03-30 06:00",
     pm10Value: "38",
   },

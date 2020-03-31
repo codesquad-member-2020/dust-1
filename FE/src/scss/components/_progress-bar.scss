@@ -2,12 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 2rem;
 
   button {
     width: $button-size;
     height: $button-size;
     border-radius: $border-radius;
     border: 1px solid $grey-1;
+    background-color: $white;
   }
 
   .progress-bar {

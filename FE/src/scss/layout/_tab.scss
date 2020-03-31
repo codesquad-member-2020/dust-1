@@ -4,7 +4,6 @@
   width: 100%;
   height: $tab-height;
   max-width: $MAX_WIDTH;
-  border-bottom: 1px solid $grey-1;
   button {
     display: flex;
     width: 50%;
@@ -13,10 +12,15 @@
     align-items: center;
     font-size: 1.125rem;
     background-color: $white;
+    border-bottom: 1px solid $grey-1;
     &.active {
       font-weight: bold;
       color: $blue;
       text-decoration: underline;
     }
   }
+}
+
+.wrap > div.hidden {
+  display: none;
 }
