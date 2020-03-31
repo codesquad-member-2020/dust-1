@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 4px;
 
   button {
     width: $button-size;
@@ -14,8 +13,8 @@
   .progress-bar {
     position: relative;
     width: calc(100% - ((#{$button-size} * 2) + #{$button-gap}));
-    margin-right: calc(#{$button-size}/ 2);
     height: 4px;
+    margin-right: calc(#{$button-size}/ 2);
     background-color: $grey-1;
   }
 

@@ -1,0 +1,49 @@
+.dust-graph {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.column-wrap {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: $graph-height;
+  & + .column-wrap {
+    border-top: 1px solid $white;
+  }
+}
+
+.column {
+  position: absolute;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $red;
+
+  .value {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.4rem;
+    color: $white;
+  }
+
+  &.good {
+    background-color: $blue;
+  }
+  &.normal {
+    background-color: $green;
+  }
+  &.bad {
+    background-color: $orange;
+  }
+  &.very-bad {
+    background-color: $red;
+  }
+}
+
+.empty-space {
+  width: 100%;
+  height: calc(100% - #{$graph-height});
+}

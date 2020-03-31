@@ -1,15 +1,18 @@
 .tab {
-  width: 100%;
-  max-width: $MAX_WIDTH;
-  height: $tab-height;
   display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: $tab-height;
+  max-width: $MAX_WIDTH;
   border-bottom: 1px solid $grey-1;
   button {
-    width: 50%;
     display: flex;
+    width: 50%;
+    height: $tab-height;
     justify-content: center;
     align-items: center;
     font-size: 1.125rem;
+    background-color: $white;
     &.active {
       font-weight: bold;
       color: $blue;
