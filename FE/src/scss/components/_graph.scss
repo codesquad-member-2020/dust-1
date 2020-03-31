@@ -24,8 +24,8 @@
 
   .value {
     position: absolute;
-    right: 0.5rem;
-    top: 0.4rem;
+    right: 5px;
+    top: 1px;
     color: $white;
   }
 
@@ -43,7 +43,20 @@
   }
 }
 
-.empty-space {
+.placeholder {
+  position: relative;
   width: 100%;
   height: calc(100% - #{$graph-height});
+  &::after {
+    content: "최근 24시간 데이터만 볼 수 있어요";
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: $grey-1;
+  }
 }
