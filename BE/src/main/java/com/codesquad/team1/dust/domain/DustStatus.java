@@ -2,42 +2,42 @@ package com.codesquad.team1.dust.domain;
 
 public class DustStatus {
 
-    private int pm10Grade1h;
-    private int pm10Value;
-    private String location;
+    private String pm10Grade1h;
+    private String pm10Value;
+    private String dateTime;
 
-    public DustStatus(int pm10Grade1h, int pm10Value, String location) {
+    public DustStatus(String pm10Grade1h, String pm10Value, String dateTime) {
         this.pm10Grade1h = pm10Grade1h;
         this.pm10Value = pm10Value;
-        this.location = location;
+        this.dateTime = dateTime;
     }
 
-    public int getPm10Grade1h() {
+    public String getPm10Grade1h() {
         return pm10Grade1h;
     }
 
-    public void setPm10Grade1h(int pm10Grade1h) {
+    public void setPm10Grade1h(String pm10Grade1h) {
         this.pm10Grade1h = pm10Grade1h;
     }
 
-    public int getPm10Value() {
+    public String getPm10Value() {
         return pm10Value;
     }
 
-    public void setPm10Value(int pm10Value) {
+    public void setPm10Value(String pm10Value) {
         this.pm10Value = pm10Value;
     }
 
-    public String getLocation() {
-        return location;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     @Override
     public String toString() {
-        return "DustStatus{" + "pm10Grade1h=" + pm10Grade1h + ", pm10Value=" + pm10Value + ", location='" + location + '\'' + '}';
+        return "DustStatus{" + "pm10Grade1h=" + pm10Grade1h + ", pm10Value=" + pm10Value + ", dateTime='" + dateTime + '\'' + '}';
     }
 }

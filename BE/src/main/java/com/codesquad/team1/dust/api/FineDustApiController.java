@@ -30,13 +30,41 @@ public class FineDustApiController {
         return stationLocations;
     }
 
-    @GetMapping("/{stationName}/dust-status")
-    public DustStatus showDustStatus(@PathVariable String stationName) {
-        DustStatus dustStatus = new DustStatus(2, 74, stationName);
+    @GetMapping("/{stationName}/daily-dust-status")
+    public List<DustStatus> showDailyDustStatus(@PathVariable String stationName) {
+        List<DustStatus> dustStatusList = new ArrayList<>();
 
-        log.debug("dustStatus: {}", dustStatus);
+        log.debug("stationName: {}", stationName);
 
-        return dustStatus;
+        dustStatusList.add(new DustStatus("4", "205", "2020-03-31 12:00"));
+        dustStatusList.add(new DustStatus("4", "180", "2020-03-31 11:00"));
+        dustStatusList.add(new DustStatus("2", "55", "2020-03-31 10:00"));
+        dustStatusList.add(new DustStatus("2", "51", "2020-03-31 09:00"));
+        dustStatusList.add(new DustStatus("2", "42", "2020-03-31 08:00"));
+        dustStatusList.add(new DustStatus("2", "41", "2020-03-31 07:00"));
+        dustStatusList.add(new DustStatus("1", "0", "2020-03-31 06:00"));
+        dustStatusList.add(new DustStatus("1", "30", "2020-03-31 05:00"));
+        dustStatusList.add(new DustStatus("2", "36", "2020-03-31 04:00"));
+        dustStatusList.add(new DustStatus("2", "38", "2020-03-31 03:00"));
+        dustStatusList.add(new DustStatus("3", "99", "2020-03-31 02:00"));
+        dustStatusList.add(new DustStatus("3", "150", "2020-03-31 01:00"));
+        dustStatusList.add(new DustStatus("2", "35", "2020-03-30 24:00"));
+        dustStatusList.add(new DustStatus("3", "81", "2020-03-30 23:00"));
+        dustStatusList.add(new DustStatus("2", "39", "2020-03-30 22:00"));
+        dustStatusList.add(new DustStatus("2", "42", "2020-03-30 21:00"));
+        dustStatusList.add(new DustStatus("4", "151", "2020-03-30 20:00"));
+        dustStatusList.add(new DustStatus("2", "54", "2020-03-30 19:00"));
+        dustStatusList.add(new DustStatus("2", "80", "2020-03-30 18:00"));
+        dustStatusList.add(new DustStatus("2", "52", "2020-03-30 17:00"));
+        dustStatusList.add(new DustStatus("-1", "-1", "2020-03-30 16:00"));
+        dustStatusList.add(new DustStatus("-1", "-1", "2020-03-30 15:00"));
+        dustStatusList.add(new DustStatus("2", "49", "2020-03-30 14:00"));
+        dustStatusList.add(new DustStatus("1", "15", "2020-03-30 13:00"));
+        dustStatusList.add(new DustStatus("2", "51", "2020-03-30 12:00"));
+
+        log.debug("dustStatusList: {}", dustStatusList);
+
+        return dustStatusList;
     }
 
     @GetMapping("/location/@={latitude},{longitude}")
