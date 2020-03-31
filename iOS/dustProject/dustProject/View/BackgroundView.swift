@@ -12,13 +12,12 @@ class BackgroundView: UIView {
     
     private let gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
-        layer.borderColor = UIColor.blue.cgColor
         layer.borderWidth = CGFloat(0.5)
         return layer
     }()
     
     override func draw(_ rect: CGRect) {
-        self.layer.addSublayer(gradientLayer)
+        layer.insertSublayer(gradientLayer, at: 0)
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = self.startPoint
         gradientLayer.endPoint = self.endPoint
