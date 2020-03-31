@@ -9,22 +9,17 @@
 import UIKit
 
 class MicroDustViewController: UIViewController {
-
+    //MARK: - Property
+    let dataSource = MicroDustTableDataSource()
+    
+    //MARK: - View
+    @IBOutlet weak var microDustTableView: UITableView!
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        microDustTableView.dataSource = dataSource
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    //MARK: - Function
 }
