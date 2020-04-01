@@ -3,21 +3,17 @@ package com.codesquad.team1.dust.api;
 import com.codesquad.team1.dust.domain.DustStatus;
 import com.codesquad.team1.dust.domain.Forecast;
 import com.codesquad.team1.dust.domain.StationLocation;
-import org.json.JSONObject;
+import com.codesquad.team1.dust.util.PublicAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.codesquad.team1.dust.constants.CommonConstants.*;
 
 @RestController
 public class FineDustApiController {
@@ -84,23 +80,10 @@ public class FineDustApiController {
         return stationLocation;
     }
 
-    // 날짜는 Default로 금일
     @GetMapping("/forecast")
     public Forecast showForecastOfFineDust() throws URISyntaxException {
         String today = LocalDate.now().toString();
-        URI publicApiRequestUrl = new URI(PUBLIC_API_FORECAST_URL_AND_SEARCH_DATE + today
-                + AND_SERVICE_KEY + PUBLIC_API_SERVICE_KEY + RETURN_TYPE_JSON);
-
-        RestTemplate restTemplate = new RestTemplate();
-        String response = restTemplate.getForObject(publicApiRequestUrl, String.class);
-        JSONObject forecastObject = new JSONObject(response).getJSONArray("list").getJSONObject(0);
-
-        log.debug("오늘 날짜: {}", today);
-        log.debug("requestUrl: {}", publicApiRequestUrl);
-        log.debug("response: {}", response);
-        log.debug("forecastJSONObject: {}", forecastObject);
-
-        Forecast forecast = new Forecast(forecastObject);
+        Forecast forecast = new Forecast(PublicAPIUtils.getForecastJSONObject(today));
 
         log.debug("forecast: {}", forecast);
 

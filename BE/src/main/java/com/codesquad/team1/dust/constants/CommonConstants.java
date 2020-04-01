@@ -6,7 +6,7 @@ public class CommonConstants {
     public static final String PUBLIC_API_FORECAST_URL_AND_SEARCH_DATE =
             "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMinuDustFrcstDspth?searchDate=";
     public static final String AND_SERVICE_KEY = "&ServiceKey=";
-    public static final String RETURN_TYPE_JSON = "&_returnType=json";
+    public static final String AND_RETURN_TYPE_JSON = "&_returnType=json";
 
     private CommonConstants() {}
 }
