@@ -24,6 +24,11 @@ export const clearClass = (target, classes) => target.classList.remove(...classe
 
 export const getLastIndex = num => num - 1;
 
+export const getRestGradeClassName = className => {
+  const gradeClassList = [CLASS_NAME.grade1, CLASS_NAME.grade2, CLASS_NAME.grade3, CLASS_NAME.grade4];
+  return gradeClassList.filter(gradeClass => gradeClass !== className);
+};
+
 export const getGradeClassName = grade => {
   const gradeClass = {
     1: CLASS_NAME.grade1,
@@ -32,11 +37,6 @@ export const getGradeClassName = grade => {
     4: CLASS_NAME.grade4,
   };
   return gradeClass[grade] || null;
-};
-
-export const getRestGradeClassName = className => {
-  const gradeClassList = [CLASS_NAME.grade1, CLASS_NAME.grade2, CLASS_NAME.grade3, CLASS_NAME.grade4];
-  return gradeClassList.filter(gradeClass => gradeClass !== className);
 };
 
 export const getGradeEmoji = grade => {

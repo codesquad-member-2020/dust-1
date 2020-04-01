@@ -2,6 +2,7 @@ import { _q, getGradeClassName, getGradeEmoji, getGradeText, addClass, clearClas
 import { CLASS_NAME, STATUS_STRING } from "../utils/constants";
 
 export const dustContents = _q(`.${CLASS_NAME.dustContents}`);
+
 const emojiElement = _q(`.${CLASS_NAME.dustEmoji}`);
 const gradeElement = _q(`.${CLASS_NAME.dustGrade}`);
 const valueElement = _q(`.${CLASS_NAME.dustValue}`);

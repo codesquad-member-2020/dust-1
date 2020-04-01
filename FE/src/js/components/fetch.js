@@ -11,8 +11,9 @@ export default {
     })
       .then(response => response.json())
       .then(stationData => {
-        renderStationName(stationData.stationName);
-        return stationData.location;
+        const { stationName, location } = stationData;
+        renderStationName(stationName);
+        return location;
       })
       .catch(error => console.error(error));
   },
