@@ -19,6 +19,8 @@ export const CLASS_NAME = {
   grade2: "normal",
   grade3: "bad",
   grade4: "very-bad",
+  active: "active",
+  hidden: "hidden",
 };
 
 export const STATUS_STRING = {

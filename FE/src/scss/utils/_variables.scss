@@ -26,3 +26,10 @@ $button-size: 3rem;
 $button-gap: 20px;
 
 $graph-height: 20px;
+
+// mixin
+@mixin appearance-none {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

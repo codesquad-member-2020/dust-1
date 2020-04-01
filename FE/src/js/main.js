@@ -1,6 +1,6 @@
 import "./components/tab";
 import fetchData from "./components/fetch";
-import { renderStation } from "./components/dustStatus";
+import { renderStationName } from "./components/dustStatus";
 import { GPS_ALERT_MESSAGE, DEFAULT_STATION } from "./utils/constants";
 
 const gps = navigator.geolocation;
@@ -12,7 +12,7 @@ const successGetCurrentPosition = position => {
 
 const errorGetCurrentPosition = () => {
   window.alert(GPS_ALERT_MESSAGE);
-  renderStation(DEFAULT_STATION.name);
+  renderStationName(DEFAULT_STATION.name);
   fetchData.getDailyDustStatus(DEFAULT_STATION.location);
 };
 

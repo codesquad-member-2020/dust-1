@@ -29,12 +29,19 @@ const changeBackgroundColor = (element, className) => {
   addClass(className, element);
 };
 
-export const renderStation = stationName => {
+const isDuplicateData = (targetDateTime, currentTimeElement) => {
+  const [, targetTime] = targetDateTime.split(" ");
+  const [, currentTime] = currentTimeElement.innerHTML.split(" ");
+  return targetTime === currentTime;
+};
+
+export const renderStationName = stationName => {
   stationElement.innerHTML = STATUS_STRING.station(CLASS_NAME.stationName, stationName);
 };
 
 export const renderStatus = dustData => {
   const { pm10Grade1h, pm10Value, dateTime } = dustData;
+  if (isDuplicateData(dateTime, timeElement)) return;
   changeBackgroundColor(dustContents, getGradeClassName(pm10Grade1h));
   emojiElement.innerHTML = getGradeEmoji(pm10Grade1h);
   gradeElement.innerHTML = getGradeText(pm10Grade1h);
