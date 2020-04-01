@@ -1,9 +1,13 @@
 .dust-wrap {
-  display: none;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
   background-color: $blue;
 }
 
 .dust {
+  box-sizing: border-box;
+  padding-top: 2rem;
   text-align: center;
   color: $white;
 }
@@ -39,16 +43,15 @@
 }
 
 .dust-graph-wrap {
+  flex: 1;
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
+  margin-bottom: 1rem;
   background-color: $white;
   border: 1px solid $grey-1;
   border-radius: $border-radius;
-}
-
-.dust-graph-title {
-  font-size: 1rem;
-  font-weight: bold;
+  overflow-y: hidden;
 }

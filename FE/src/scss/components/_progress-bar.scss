@@ -2,33 +2,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 4px;
+  padding-bottom: 2rem;
 
   button {
     width: $button-size;
     height: $button-size;
     border-radius: $border-radius;
     border: 1px solid $grey-1;
+    background-color: $white;
   }
 
   .progress-bar {
     position: relative;
-    width: calc(100% - (#{$button-size} + #{$button-gap}));
+    width: calc(100% - ((#{$button-size} * 2) + #{$button-gap}));
     height: 4px;
+    margin-right: calc(#{$button-size}/ 2);
     background-color: $grey-1;
   }
 
   .current-progress {
     position: absolute;
-    width: 50%;
+    width: 0;
     height: 4px;
     background-color: $blue;
   }
 
   .control-btn {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     transform: translate(-50%, -50%);
     border-radius: calc(#{$button-size}/ 2);
   }

@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="tab">
-      <button class="tab-dust">미세먼지</button>
+      <button class="tab-dust active">미세먼지</button>
       <button class="tab-forecast">예보</button>
     </div>
     <div class="wrap">
@@ -25,11 +25,10 @@
           <span class="dust-station"><strong class="station-name">강남구</strong> 측정소 기준</span>
         </div>
         <div class="dust-graph-wrap">
-          <h3 class="dust-graph-title">시간별 정보</h3>
-          <canvas id="dust-graph"></canvas>
+          <div class="dust-graph"></div>
         </div>
       </div>
-      <div class="forecast-wrap">
+      <div class="forecast-wrap hidden">
         <div class="forecast">
           <h2 class="forecast-title">미세먼지 예보</h2>
           <div class="forecast-images">
