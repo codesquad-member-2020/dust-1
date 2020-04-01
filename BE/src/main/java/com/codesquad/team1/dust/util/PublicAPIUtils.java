@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codesquad.team1.dust.constants.CommonConstants.*;
+import static com.codesquad.team1.dust.constants.PublicAPIConstants.*;
 
 public class PublicAPIUtils {
 
