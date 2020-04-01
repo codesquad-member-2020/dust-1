@@ -37,7 +37,7 @@ export const MIN_PERCENTAGE = 6;
 
 export const DEFAULT_STATION = {
   name: "강남구",
-  loaction: "서울 강남구 학동로 426강남구청 별관 1동",
+  location: "서울 강남구 학동로 426강남구청 별관 1동",
 };
 
 export const GPS_ALERT_MESSAGE = `GPS가 지원되지 않습니다. 측정소는 ${DEFAULT_STATION.name}로 설정됩니다.`;
