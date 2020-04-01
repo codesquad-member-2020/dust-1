@@ -9,11 +9,19 @@ public class DustStatus {
     private String dateTime;
 
     public DustStatus(JSONObject dustStatusJSONObject) {
-        String pm10Grade1hJSON = dustStatusJSONObject.getString("pm10Grade1h");
-        String pm10ValueJSON = dustStatusJSONObject.getString("pm10Value");
-        this.pm10Grade1h = pm10Grade1hJSON.equals("") ? "-1" : pm10Grade1hJSON;
-        this.pm10Value = pm10ValueJSON.equals("-") ? "-1" : pm10ValueJSON;
+        this.pm10Grade1h = getPm10Grade1hFrom(dustStatusJSONObject);
+        this.pm10Value = getPm10ValueFrom(dustStatusJSONObject);
         this.dateTime = dustStatusJSONObject.getString("dataTime");
+    }
+
+    private String getPm10ValueFrom(JSONObject dustStatusJSONObject) {
+        String pm10ValueJSON = dustStatusJSONObject.getString("pm10Value");
+        return pm10ValueJSON.equals("-") ? "-1" : pm10ValueJSON;
+    }
+
+    private String getPm10Grade1hFrom(JSONObject dustStatusJSONObject) {
+        String pm10Grade1hJSON = dustStatusJSONObject.getString("pm10Grade1h");
+        return pm10Grade1hJSON.equals("") ? "-1" : pm10Grade1hJSON;
     }
 
     public String getPm10Grade1h() {
