@@ -16,8 +16,5 @@ const errorGetCurrentPosition = () => {
   fetchData.getDailyDustStatus(DEFAULT_STATION.location);
 };
 
-if (!gps) {
-  errorGetCurrentPosition();
-} else {
-  gps.getCurrentPosition(successGetCurrentPosition, errorGetCurrentPosition);
-}
+if (!gps) errorGetCurrentPosition();
+else gps.getCurrentPosition(successGetCurrentPosition, errorGetCurrentPosition);

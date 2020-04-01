@@ -14,8 +14,8 @@ const graphsContents = dustData =>
   dustData.reduce((graphElement, currentData) => {
     const { pm10Value, pm10Grade1h } = currentData;
     graphElement += `<div class="${CLASS_NAME.graphWrap}" style="width:${calculateGraphWidth(pm10Value)}%">
-  <div class="${CLASS_NAME.graph} ${getGradeClassName(pm10Grade1h)}">
-  <span class="${CLASS_NAME.graphValue}">${pm10Value}</span></div></div>`;
+    <div class="${CLASS_NAME.graph} ${getGradeClassName(pm10Grade1h)}">
+    <span class="${CLASS_NAME.graphValue}">${pm10Value}</span></div></div>`;
     return graphElement;
   }, "");
 
@@ -36,7 +36,4 @@ export const renderGraph = dustData => {
   graphsElement.innerHTML = `${graphsContents(dustData)}<div class="${CLASS_NAME.placeholder}"></div>`;
 };
 
-export const addGraphScrollEvent = (callback, dustData) =>
-  graphsElement.addEventListener("scroll", event => {
-    callback(getScrollTopGraphData(event, dustData));
-  });
+export const addGraphScrollEvent = (callback, dustData) => graphsElement.addEventListener("scroll", event => callback(getScrollTopGraphData(event, dustData)));
