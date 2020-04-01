@@ -21,7 +21,6 @@
   width: 100%;
   height: 100%;
   background-color: $red;
-
   .value {
     position: absolute;
     top: 0;
@@ -29,7 +28,6 @@
     transform: translate(-4px, 1px);
     color: $white;
   }
-
   &.good {
     background-color: $blue;
   }
