@@ -23,6 +23,7 @@ const getScrollTopGraphData = (event, dustData) => {
   const graphHeight = _q(`.${CLASS_NAME.graph}`).offsetHeight;
   const { scrollTop } = event.srcElement;
   for (let index = 0; index < dustData.length; index += 1) {
+    if (scrollTop <= 0) return dustData[0];
     const prevGraphScrollTop = graphHeight * index;
     const graphScrollTop = graphHeight * (index + 1);
     if (scrollTop >= prevGraphScrollTop && scrollTop < graphScrollTop) return dustData[index];

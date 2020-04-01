@@ -1,5 +1,5 @@
 import { _q, getGradeClassName, getGradeEmoji, getGradeText, addClass, clearClass, getRestGradeClassName } from "../utils/utils";
-import { CLASS_NAME, STATUS_STRING } from "../utils/constants";
+import { CLASS_NAME, STATUS_STRING, ERROR_MESSAGE } from "../utils/constants";
 
 export const dustContents = _q(`.${CLASS_NAME.dustContents}`);
 
@@ -10,11 +10,11 @@ const timeElement = _q(`.${CLASS_NAME.dustTime}`);
 const stationElement = _q(`.${CLASS_NAME.dustStation}`);
 
 const isToday = (targetYear, targetMonth, targetDay) => {
-  const todayDateTime = new Date();
-  const todayYear = todayDateTime.getFullYear();
-  const todayMonth = todayDateTime.getMonth() + 1;
-  const todayDay = todayDateTime.getDate();
-  return todayYear === parseInt(targetYear, 10) && todayMonth === parseInt(targetMonth, 10) && todayDay === parseInt(targetDay, 10);
+  const currentDateTime = new Date();
+  const currentYear = currentDateTime.getFullYear();
+  const currentMonth = currentDateTime.getMonth() + 1;
+  const currentDay = currentDateTime.getDate();
+  return currentYear === parseInt(targetYear, 10) && currentMonth === parseInt(targetMonth, 10) && currentDay === parseInt(targetDay, 10);
 };
 
 const processTime = targetDateTime => {
@@ -25,8 +25,8 @@ const processTime = targetDateTime => {
   return STATUS_STRING.time(dayString, targetTime);
 };
 
-const changeBackgroundColor = (element, className) => {
-  clearClass(element, getRestGradeClassName(className));
+const changeBackgroundColor = (className, element) => {
+  clearClass(getRestGradeClassName(className), element);
   addClass(className, element);
 };
 
@@ -40,10 +40,16 @@ export const renderStationName = stationName => {
   stationElement.innerHTML = STATUS_STRING.station(CLASS_NAME.stationName, stationName);
 };
 
+export const showErrorMessage = () => {
+  emojiElement.innerHTML = ERROR_MESSAGE.emoji;
+  gradeElement.innerHTML = ERROR_MESSAGE.code;
+  stationElement.innerHTML = ERROR_MESSAGE.text;
+};
+
 export const renderStatus = dustData => {
   const { pm10Grade1h, pm10Value, dateTime } = dustData;
   if (isDuplicateData(dateTime, timeElement)) return;
-  changeBackgroundColor(dustContents, getGradeClassName(pm10Grade1h));
+  changeBackgroundColor(getGradeClassName(pm10Grade1h), dustContents);
   emojiElement.innerHTML = getGradeEmoji(pm10Grade1h);
   gradeElement.innerHTML = getGradeText(pm10Grade1h);
   valueElement.innerHTML = STATUS_STRING.dustValue(pm10Value);
