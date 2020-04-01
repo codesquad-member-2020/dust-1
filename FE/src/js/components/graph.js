@@ -1,4 +1,4 @@
-import { _q, getObjLength, getLastIndex, getGradeClassName } from "../utils/utils";
+import { _q, getLastIndex, getGradeClassName } from "../utils/utils";
 import { CLASS_NAME, MAX_DUST_VALUE, MIN_PERCENTAGE } from "../utils/constants";
 
 export const graphsElement = _q(`.${CLASS_NAME.graphs}`);
@@ -14,7 +14,7 @@ const graphsContents = dustData =>
   dustData.reduce((graphElement, currentData) => {
     graphElement += `<div class="${CLASS_NAME.graphWrap}" style="width:${calculateGraphWidth(currentData.pm10Value)}%">
   <div class="${CLASS_NAME.graph} ${getGradeClassName(currentData.pm10Grade1h)}">
-  <span class="${CLASS_NAME.dustValue}">${currentData.pm10Value}</span></div></div>`;
+  <span class="${CLASS_NAME.graphValue}">${currentData.pm10Value}</span></div></div>`;
     return graphElement;
   }, "");
 
@@ -25,7 +25,7 @@ export const renderGraph = dustData => {
 export const getScrollTopGraphData = (event, dustData) => {
   const graphHeight = _q(`.${CLASS_NAME.graph}`).offsetHeight;
   const { scrollTop } = event.srcElement;
-  const dustDataLength = getObjLength(dustData);
+  const dustDataLength = dustData.length;
   for (let index = 1; index < dustDataLength; index += 1) {
     const prevGraphScrollTop = graphHeight * (index - 1);
     const graphScrollTop = graphHeight * index;

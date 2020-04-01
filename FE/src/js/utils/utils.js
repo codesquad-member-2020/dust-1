@@ -15,7 +15,12 @@ export const toggleClass = (className, target) => {
   else addClass(className, target);
 };
 
-export const getObjLength = obj => Object.keys(obj).length;
+export const reverseClass = (className, addTarget, removeTarget) => {
+  addClass(className, addTarget);
+  removeClass(className, removeTarget);
+};
+
+export const clearClass = (target, classes) => target.classList.remove(...classes);
 
 export const getLastIndex = num => num - 1;
 
@@ -29,6 +34,11 @@ export const getGradeClassName = grade => {
   return gradeClass[grade] || null;
 };
 
+export const getRestGradeClassName = className => {
+  const gradeClassList = [CLASS_NAME.grade1, CLASS_NAME.grade2, CLASS_NAME.grade3, CLASS_NAME.grade4];
+  return gradeClassList.filter(gradeClass => gradeClass !== className);
+};
+
 export const getGradeEmoji = grade => {
   const gradeEmoji = {
     1: "😀",
@@ -37,4 +47,14 @@ export const getGradeEmoji = grade => {
     4: "😱",
   };
   return gradeEmoji[grade] || null;
+};
+
+export const getGradeText = grade => {
+  const gradeText = {
+    1: "좋음",
+    2: "보통",
+    3: "나쁨",
+    4: "매우 나쁨",
+  };
+  return gradeText[grade] || null;
 };
