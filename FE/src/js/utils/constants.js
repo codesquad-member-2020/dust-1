@@ -35,15 +35,20 @@ export const MAX_DUST_VALUE = 200;
 
 export const MIN_PERCENTAGE = 6;
 
-export const DEFAULT_STATION = {
-  name: "강남구",
-  location: "서울 강남구 학동로 426강남구청 별관 1동",
+export const DEFAULT_STATION = "강남구";
+
+export const ERROR_MESSAGE = {
+  emoji: "😭",
+  code: "404",
+  text: "서버가 응답하지 않습니다.",
 };
 
-export const GPS_ALERT_MESSAGE = `GPS가 지원되지 않습니다. 측정소는 ${DEFAULT_STATION.name}로 설정됩니다.`;
+export const GPS_ALERT_MESSAGE = `GPS가 지원되지 않습니다. 측정소는 ${DEFAULT_STATION}로 설정됩니다.`;
 
-export const URL = {
-  serverURL: "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/",
-  nearestDustStation: (latitude, longitude) => `${URL.serverURL}location/@={${latitude},${longitude}}`,
-  dailyDustStatus: stationLocation => `${URL.serverURL}${stationLocation}/daily-dust-status`,
+const serverURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/";
+
+export const API_URL = {
+  nearestDustStation: (latitude, longitude) => `${serverURL}location/@=${latitude},${longitude}`,
+  dailyDustStatus: stationLocation => `${serverURL}${stationLocation}/daily-dust-status`,
+  forecast: `${serverURL}forecast`,
 };

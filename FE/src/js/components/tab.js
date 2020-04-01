@@ -18,5 +18,7 @@ const changeTab = event => {
   reverseClass(CLASS_NAME.hidden, dustContents, forecastContents);
 };
 
-tabs.addEventListener("touchend", event => changeTab(event));
-tabs.addEventListener("click", event => changeTab(event));
+export default () => {
+  tabs.addEventListener("touchend", event => changeTab(event));
+  tabs.addEventListener("click", event => changeTab(event));
+};
