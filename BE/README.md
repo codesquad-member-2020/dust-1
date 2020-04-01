@@ -164,7 +164,7 @@ pm10Grade1h: 1: 좋음, 2: 보통, 3: 나쁨, 4: 매우나쁨
 }
 ```
 
-`GET` 요청으로 `/forecast` 를 호출하면 아래와 같은 데이터를 반환합니다. (Mock)
+`GET` 요청으로 `/forecast` 를 호출하면 아래와 같은 데이터를 반환합니다. 실제 데이터입니다.
 
 ```json
 {
@@ -179,15 +179,6 @@ pm10Grade1h: 1: 좋음, 2: 보통, 3: 나쁨, 4: 매우나쁨
         },
         {
             "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138847"
-        },
-        {
-            "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138848"
-        },
-        {
-            "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138849"
-        },
-        {
-            "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138850"
         }
     ]
 }

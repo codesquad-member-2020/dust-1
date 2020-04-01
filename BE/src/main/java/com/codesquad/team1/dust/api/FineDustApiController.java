@@ -2,16 +2,22 @@ package com.codesquad.team1.dust.api;
 
 import com.codesquad.team1.dust.domain.DustStatus;
 import com.codesquad.team1.dust.domain.Forecast;
-import com.codesquad.team1.dust.domain.Image;
 import com.codesquad.team1.dust.domain.StationLocation;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.codesquad.team1.dust.constants.CommonConstants.*;
 
 @RestController
 public class FineDustApiController {
@@ -68,7 +74,8 @@ public class FineDustApiController {
     }
 
     @GetMapping("/location/@={latitude},{longitude}")
-    public StationLocation showNearestMeasureStationLocation(@PathVariable String latitude, @PathVariable String longitude) {
+    public StationLocation showNearestMeasureStationLocation(@PathVariable String latitude,
+                                                             @PathVariable String longitude) {
         StationLocation stationLocation = new StationLocation("강남구", "서울 강남구 학동로 426강남구청 별관 1동");
 
         log.debug("위도: {}, 경도: {}", latitude, longitude);
@@ -79,25 +86,21 @@ public class FineDustApiController {
 
     // 날짜는 Default로 금일
     @GetMapping("/forecast")
-    public Forecast showForecastOfFineDust() {
-        List<Image> images = new ArrayList<>();
-        Image image1 =  new Image("http://www.airkorea.or.kr/file/viewImage/?atch_id=138845");
-        Image image2 =  new Image("http://www.airkorea.or.kr/file/viewImage/?atch_id=138846");
-        Image image3 =  new Image("http://www.airkorea.or.kr/file/viewImage/?atch_id=138847");
-        Image image4 =  new Image("http://www.airkorea.or.kr/file/viewImage/?atch_id=138848");
-        Image image5 =  new Image("http://www.airkorea.or.kr/file/viewImage/?atch_id=138849");
-        Image image6 =  new Image("http://www.airkorea.or.kr/file/viewImage/?atch_id=138850");
+    public Forecast showForecastOfFineDust() throws URISyntaxException {
+        String today = LocalDate.now().toString();
+        URI publicApiRequestUrl = new URI(PUBLIC_API_FORECAST_URL_AND_SEARCH_DATE + today
+                + AND_SERVICE_KEY + PUBLIC_API_SERVICE_KEY + RETURN_TYPE_JSON);
 
-        images.add(image1);
-        images.add(image2);
-        images.add(image3);
-        images.add(image4);
-        images.add(image5);
-        images.add(image6);
+        RestTemplate restTemplate = new RestTemplate();
+        String response = restTemplate.getForObject(publicApiRequestUrl, String.class);
+        JSONObject forecastObject = new JSONObject(response).getJSONArray("list").getJSONObject(0);
 
-        Forecast forecast = new Forecast("○ [미세먼지] 전 권역이 '좋음'∼'보통'으로 예상됨. 다만, 경기남부·충청권은 오전에 일시적으로 '나쁨' 수준일 것으로 예상됨.",
-                "서울 : 보통,제주 : 좋음,전남 : 보통,전북 : 보통,광주 : 보통,경남 : 좋음,경북 : 좋음,울산 : 좋음,대구 : 좋음,부산 : 좋음,충남 : 보통,충북 : 보통,세종 : 보통,대전 : 보통,영동 : 좋음,영서 : 보통,경기남부 : 보통,경기북부 : 보통,인천 : 보통",
-                images);
+        log.debug("오늘 날짜: {}", today);
+        log.debug("requestUrl: {}", publicApiRequestUrl);
+        log.debug("response: {}", response);
+        log.debug("forecastJSONObject: {}", forecastObject);
+
+        Forecast forecast = new Forecast(forecastObject);
 
         log.debug("forecast: {}", forecast);
 

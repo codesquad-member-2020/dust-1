@@ -1,19 +1,26 @@
 .tab {
-  width: 100%;
-  max-width: $MAX_WIDTH;
-  height: $tab-height;
   display: flex;
-  border-bottom: 1px solid $grey-1;
+  box-sizing: border-box;
+  width: 100%;
+  height: $tab-height;
+  max-width: $MAX_WIDTH;
   button {
-    width: 50%;
     display: flex;
+    width: 50%;
+    height: $tab-height;
     justify-content: center;
     align-items: center;
     font-size: 1.125rem;
+    background-color: $white;
+    border-bottom: 1px solid $grey-1;
     &.active {
       font-weight: bold;
       color: $blue;
       text-decoration: underline;
     }
   }
+}
+
+.wrap > div.hidden {
+  display: none;
 }

@@ -14,13 +14,14 @@ body {
 .wrap {
   width: 100%;
   max-width: $MAX_WIDTH;
+  height: calc(100vh - #{$tab-height});
   margin: 0 auto;
 }
 
 .dust-wrap,
 .forecast-wrap {
   width: 100%;
-  float: left;
+  display: flow-root;
   box-sizing: border-box;
-  padding: 0 $wrap-padding $wrap-padding-bottom $wrap-padding;
+  padding: 0 $wrap-padding;
 }
