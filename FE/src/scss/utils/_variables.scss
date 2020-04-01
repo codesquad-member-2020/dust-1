@@ -23,6 +23,13 @@ $tab-margin-bottom: 40px;
 $border-radius: 8px;
 
 $button-size: 3rem;
-$button-gap: 40px;
+$button-gap: 20px;
 
 $graph-height: 20px;
+
+// mixin
+@mixin appearance-none {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

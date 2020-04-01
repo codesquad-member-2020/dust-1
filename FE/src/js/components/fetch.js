@@ -1,5 +1,6 @@
 import { URL } from "../utils/constants";
-import { graphsElement, renderGraph, getScrollTopGraphData } from "./graph";
+import { renderStatus, renderStationName } from "./dustStatus";
+import { renderGraph, addGraphScrollEvent } from "./graph";
 
 const isDataValid = data => data.pm10Value >= 0;
 
@@ -9,7 +10,10 @@ export default {
       method: "GET",
     })
       .then(response => response.json())
-      .then(stationData => stationData.location)
+      .then(stationData => {
+        renderStationName(stationData.stationName);
+        return stationData.location;
+      })
       .catch(error => console.error(error));
   },
 
@@ -20,9 +24,10 @@ export default {
       .then(response => response.json())
       .then(json => json.filter(data => isDataValid(data)))
       .then(dustData => {
-        console.log(dustData);
+        const latestDustData = dustData[0];
+        renderStatus(latestDustData);
         renderGraph(dustData);
-        graphsElement.addEventListener("scroll", event => getScrollTopGraphData(event, dustData));
+        addGraphScrollEvent(renderStatus, dustData);
       })
       .catch(error => console.error(error));
   },

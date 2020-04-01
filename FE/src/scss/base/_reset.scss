@@ -138,5 +138,9 @@ h1 {
   display: none;
 }
 button {
+  @include appearance-none;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
 }

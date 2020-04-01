@@ -2,14 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 2rem;
+  padding: 1rem 0;
 
   button {
     width: $button-size;
     height: $button-size;
+  }
+
+  .play-btn {
     border-radius: $border-radius;
-    border: 1px solid $grey-1;
-    background-color: $white;
+    background-color: $blue;
+  }
+
+  .material-icons {
+    color: $white;
   }
 
   .progress-bar {
@@ -33,5 +39,7 @@
     left: 0;
     transform: translate(-50%, -50%);
     border-radius: calc(#{$button-size}/ 2);
+    border: 1px solid $grey-1;
+    background-color: $white;
   }
 }

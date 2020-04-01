@@ -1,12 +1,9 @@
 import "./components/tab";
 import fetchData from "./components/fetch";
-import { GPS_ALERT_MESSAGE, DEFAULT_STATION_LOCATION } from "./utils/constants";
-import { DUST_STATUS } from "./utils/mockData";
-import { renderGraph } from "./components/graph";
+import { renderStationName } from "./components/dustStatus";
+import { GPS_ALERT_MESSAGE, DEFAULT_STATION } from "./utils/constants";
 
 const gps = navigator.geolocation;
-
-// renderGraph(DUST_STATUS);
 
 const successGetCurrentPosition = position => {
   const { latitude, longitude } = position.coords;
@@ -15,7 +12,8 @@ const successGetCurrentPosition = position => {
 
 const errorGetCurrentPosition = () => {
   window.alert(GPS_ALERT_MESSAGE);
-  fetchData.getDailyDustStatus(DEFAULT_STATION_LOCATION);
+  renderStationName(DEFAULT_STATION.name);
+  fetchData.getDailyDustStatus(DEFAULT_STATION.location);
 };
 
 if (!gps) {

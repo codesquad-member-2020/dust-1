@@ -7,7 +7,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: $grey-2;
+  background-color: $white;
   color: $black;
 }
 
@@ -20,8 +20,10 @@ body {
 
 .dust-wrap,
 .forecast-wrap {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  display: flow-root;
+  height: 100%;
   box-sizing: border-box;
   padding: 0 $wrap-padding;
 }
