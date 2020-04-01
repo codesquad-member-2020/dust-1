@@ -23,9 +23,6 @@ public class Forecast {
         images.add(new Image(forecastObject.getString("imageUrl1")));
         images.add(new Image(forecastObject.getString("imageUrl2")));
         images.add(new Image(forecastObject.getString("imageUrl3")));
-        images.add(new Image(forecastObject.getString("imageUrl4")));
-        images.add(new Image(forecastObject.getString("imageUrl5")));
-        images.add(new Image(forecastObject.getString("imageUrl6")));
 
         return images;
     }

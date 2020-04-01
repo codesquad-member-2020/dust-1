@@ -179,15 +179,6 @@ pm10Grade1h: 1: 좋음, 2: 보통, 3: 나쁨, 4: 매우나쁨
         },
         {
             "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138847"
-        },
-        {
-            "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138848"
-        },
-        {
-            "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138849"
-        },
-        {
-            "imageUrl": "http://www.airkorea.or.kr/file/viewImage/?atch_id=138850"
         }
     ]
 }
