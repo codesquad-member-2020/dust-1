@@ -1,6 +1,7 @@
 package com.codesquad.team1.dust.util;
 
 import com.codesquad.team1.dust.domain.DustStatus;
+import com.codesquad.team1.dust.domain.StationLocation;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -53,6 +54,23 @@ public class PublicAPIUtils {
         log.debug("dustStatusList: {}", dustStatusList);
 
         return dustStatusList;
+    }
+
+    public static StationLocation getNearestStationLocation(JSONObject transResultJSONObject) throws URISyntaxException {
+        Double tmX = transResultJSONObject.getDouble("x");
+        Double tmY = transResultJSONObject.getDouble("y");
+        log.debug("tmX: {}, tmY: {}", tmX, tmY);
+
+        URI publicApiRequestUrl = new URI(PUBLIC_API_GET_NEARBY_MEASURE_STATION_LIST_URL_AND_TMX + tmX + AND_TMY
+                + tmY + AND_SERVICE_KEY + PUBLIC_API_SERVICE_KEY + AND_RETURN_TYPE_JSON);
+        log.debug("requestUrl: {}", publicApiRequestUrl);
+
+        String response = restTemplate.getForObject(publicApiRequestUrl, String.class);
+        log.debug("response: {}", response);
+
+        JSONObject nearestJSONObject = new JSONObject(response).getJSONArray("list").getJSONObject(0);
+
+        return new StationLocation(nearestJSONObject);
     }
 
     private PublicAPIUtils() {}

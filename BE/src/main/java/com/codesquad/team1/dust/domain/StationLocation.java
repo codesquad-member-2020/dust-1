@@ -1,5 +1,7 @@
 package com.codesquad.team1.dust.domain;
 
+import org.json.JSONObject;
+
 public class StationLocation {
 
     private String stationName;
@@ -8,6 +10,11 @@ public class StationLocation {
     public StationLocation(String stationName, String location) {
         this.stationName = stationName;
         this.location = location;
+    }
+
+    public StationLocation(JSONObject nearestJSONObject) {
+        this.stationName = nearestJSONObject.getString("stationName");
+        this.location = nearestJSONObject.getString("addr");
     }
 
     public String getStationName() {
