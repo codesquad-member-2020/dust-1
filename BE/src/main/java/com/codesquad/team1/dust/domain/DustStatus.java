@@ -1,15 +1,19 @@
 package com.codesquad.team1.dust.domain;
 
+import org.json.JSONObject;
+
 public class DustStatus {
 
     private String pm10Grade1h;
     private String pm10Value;
     private String dateTime;
 
-    public DustStatus(String pm10Grade1h, String pm10Value, String dateTime) {
-        this.pm10Grade1h = pm10Grade1h;
-        this.pm10Value = pm10Value;
-        this.dateTime = dateTime;
+    public DustStatus(JSONObject dustStatusJSONObject) {
+        String pm10Grade1hJSON = dustStatusJSONObject.getString("pm10Grade1h");
+        String pm10ValueJSON = dustStatusJSONObject.getString("pm10Value");
+        this.pm10Grade1h = pm10Grade1hJSON.equals("") ? "-1" : pm10Grade1hJSON;
+        this.pm10Value = pm10ValueJSON.equals("-") ? "-1" : pm10ValueJSON;
+        this.dateTime = dustStatusJSONObject.getString("dataTime");
     }
 
     public String getPm10Grade1h() {
