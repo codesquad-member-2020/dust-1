@@ -22,8 +22,6 @@ export const reverseClass = (className, addTarget, removeTarget) => {
 
 export const clearClass = (target, classes) => target.classList.remove(...classes);
 
-export const getLastIndex = num => num - 1;
-
 export const getRestGradeClassName = className => {
   const gradeClassList = [CLASS_NAME.grade1, CLASS_NAME.grade2, CLASS_NAME.grade3, CLASS_NAME.grade4];
   return gradeClassList.filter(gradeClass => gradeClass !== className);
