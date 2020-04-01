@@ -3,7 +3,9 @@ package com.codesquad.team1.dust.api;
 import com.codesquad.team1.dust.domain.DustStatus;
 import com.codesquad.team1.dust.domain.Forecast;
 import com.codesquad.team1.dust.domain.StationLocation;
+import com.codesquad.team1.dust.util.KakaoAPIUtils;
 import com.codesquad.team1.dust.util.PublicAPIUtils;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,10 +46,16 @@ public class FineDustApiController {
 
     @GetMapping("/location/@={latitude},{longitude}")
     public StationLocation showNearestMeasureStationLocation(@PathVariable String latitude,
-                                                             @PathVariable String longitude) {
+                                                             @PathVariable String longitude) throws URISyntaxException {
         StationLocation stationLocation = new StationLocation("강남구", "서울 강남구 학동로 426강남구청 별관 1동");
 
         log.debug("위도: {}, 경도: {}", latitude, longitude);
+
+        JSONObject transResultJSONObject = KakaoAPIUtils.getTmCoordinateSystem(latitude, longitude);
+        Double tmX = transResultJSONObject.getDouble("x");
+        Double tmY = transResultJSONObject.getDouble("y");
+        log.debug("tmX: {}, tmY: {}", tmX, tmY);
+
         log.debug("stationLocation: {}", stationLocation);
 
         return stationLocation;
