@@ -3,6 +3,18 @@
   height: 100%;
   flex-direction: column;
   background-color: $blue;
+  &.good {
+    background-color: $blue;
+  }
+  &.normal {
+    background-color: $green;
+  }
+  &.bad {
+    background-color: $orange;
+  }
+  &.very-bad {
+    background-color: $red;
+  }
 }
 
 .dust {
@@ -36,6 +48,8 @@
 .dust-station {
   display: inline-block;
   margin-bottom: 2rem;
+  text-align: center;
+  color: $white;
 }
 
 .station-name {

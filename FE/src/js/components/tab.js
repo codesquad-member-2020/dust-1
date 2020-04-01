@@ -1,21 +1,18 @@
-import { _q, addClass, removeClass, toggleClass } from "../utils/utils";
+import { CLASS_NAME } from "../utils/constants";
+import { _q, reverseClass } from "../utils/utils";
+import { dustContents } from "./dustStatus";
 
-const tabs = _q(".tab");
-const dustTab = _q(".tab-dust");
-const forecastTab = _q(".tab-forecast");
-const dustContent = _q(".dust-wrap");
-const forecastContent = _q(".forecast-wrap");
+const tabs = _q(`.${CLASS_NAME.tabs}`);
+const dustTab = _q(`.${CLASS_NAME.dustTab}`);
+const forecastTab = _q(`.${CLASS_NAME.forecastTab}`);
+const forecastContents = _q(`.${CLASS_NAME.forecastContents}`);
 
-tabs.addEventListener("click", event => {
+tabs.addEventListener("touchend", event => {
   if (event.target === dustTab) {
-    addClass("active", dustTab);
-    removeClass("active", forecastTab);
-    addClass("hidden", forecastContent);
-    removeClass("hidden", dustContent);
+    reverseClass("active", dustTab, forecastTab);
+    reverseClass("hidden", forecastContents, dustContents);
     return;
   }
-  removeClass("active", dustTab);
-  addClass("active", forecastTab);
-  removeClass("hidden", forecastContent);
-  addClass("hidden", dustContent);
+  reverseClass("active", forecastTab, dustTab);
+  reverseClass("hidden", dustContents, forecastContents);
 });
