@@ -19,7 +19,6 @@ public class KakaoAPIUtils {
     private static final RestTemplate restTemplate = new RestTemplate();
 
     public static JSONObject getTmCoordinateSystem(String latitude, String longitude) throws URISyntaxException {
-        log.debug("위도: {}, 경도: {}", latitude, longitude);
         URI kakaoApiRequestUrl = new URI(KAKAO_API_TRANS_GEO_COORDINATE_SYSTEM_AND_X + longitude
                 + AND_Y + latitude + AND_INPUT_COORDINATE_SYSTEM_WGS84 + AND_OUTPUT_COORDINATE_SYSTEM_TM);
         log.debug("requestUtl: {}", kakaoApiRequestUrl);

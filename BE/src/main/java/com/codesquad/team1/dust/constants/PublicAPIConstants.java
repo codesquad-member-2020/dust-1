@@ -8,6 +8,8 @@ public class PublicAPIConstants {
             "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMinuDustFrcstDspth?searchDate=";
     public static final String PUBLIC_API_REALTIME_MEASURE_URL =
             "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=";
+    public static final String PUBLIC_API_GET_NEARBY_MEASURE_STATION_LIST_URL_AND_TMX =
+            "http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getNearbyMsrstnList?tmX=";
 
     public static final String AND_DATA_TERM_DAILY = "&dataTerm=daily";
     public static final String AND_PAGE_NO_1 = "&pageNo=1";
@@ -15,6 +17,7 @@ public class PublicAPIConstants {
     public static final String AND_SERVICE_KEY = "&ServiceKey=";
     public static final String AND_VERSION = "&ver=";
     public static final String AND_RETURN_TYPE_JSON = "&_returnType=json";
+    public static final String AND_TMY = "&tmY=";
 
     private PublicAPIConstants() {}
 }
