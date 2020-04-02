@@ -2,7 +2,6 @@ package com.codesquad.team1.dust.domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Forecast {
@@ -11,25 +10,16 @@ public class Forecast {
     private String informGrade;
     private List<Image> images;
 
-    public Forecast(JsonNode forecastObject, List<String> imageURLs) {
+    public Forecast(JsonNode forecastObject, List<Image> images) {
         this.informOverall = forecastObject.get("informOverall").asText();
         this.informGrade = forecastObject.get("informGrade").asText();
-        this.images = parseImages(imageURLs);
+        this.images = images;
     }
 
     public Forecast(String informOverall, String informGrade, List<Image> images) {
         this.informOverall = informOverall;
         this.informGrade = informGrade;
         this.images = images;
-    }
-
-    private List<Image> parseImages(List<String> imageURLs) {
-        List<Image> images = new ArrayList<>();
-
-        for (String imageURL : imageURLs)
-            images.add(new Image(imageURL));
-
-        return images;
     }
 
     public String getInformOverall() {
