@@ -17,6 +17,12 @@ public class Forecast {
         this.images = parseImages(forecastObject);
     }
 
+    public Forecast(String informOverall, String informGrade, List<Image> images) {
+        this.informOverall = informOverall;
+        this.informGrade = informGrade;
+        this.images = images;
+    }
+
     private List<Image> parseImages(JsonNode forecastObject) {
         List<Image> images = new ArrayList<>();
 
