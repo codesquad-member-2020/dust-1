@@ -1,4 +1,4 @@
-import { _q, addClass, removeClass, hasClass } from "../utils/utils";
+import { _q, addClass, removeClass, hasClass, addMultipleEventListener } from "../utils/utils";
 import { CLASS_NAME, FORECAST_PLAY_BUTTON_ICON, IMAGE_PLAY_SPEED, IMAGE_LOOP_INTERVAL, MAX_PERCENTAGE } from "../utils/constants";
 import { forecastImages, selectViewImage } from "./forecast";
 
@@ -70,6 +70,5 @@ const playForecastImage = event => {
 };
 
 export const addProgressBarTouchEvent = () => {
-  progressBarElem.playButton.addEventListener("touchend", event => playForecastImage(event));
-  progressBarElem.playButton.addEventListener("click", event => playForecastImage(event));
+  addMultipleEventListener(progressBarElem.playButton, playForecastImage, "touchend", "click");
 };

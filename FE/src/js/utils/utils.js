@@ -21,3 +21,5 @@ export const reverseClass = (className, addTarget, removeTarget) => {
 };
 
 export const clearClass = (classes, target) => target.classList.remove(...classes);
+
+export const addMultipleEventListener = (target, callback, ...event) => event.forEach(eachEvent => target.addEventListener(eachEvent, e => callback(e)));

@@ -1,5 +1,5 @@
 import { CLASS_NAME } from "../utils/constants";
-import { _q, reverseClass } from "../utils/utils";
+import { _q, reverseClass, addMultipleEventListener } from "../utils/utils";
 import { dustContents } from "./dustStatus";
 import { forecastContents } from "./forecast";
 
@@ -20,7 +20,4 @@ const changeTab = event => {
   reverseClass(CLASS_NAME.hidden, dustContents, forecastContents);
 };
 
-export default () => {
-  tabElem.tabs.addEventListener("touchend", event => changeTab(event));
-  tabElem.tabs.addEventListener("click", event => changeTab(event));
-};
+export default () => addMultipleEventListener(tabElem.tabs, changeTab, "touchend", "click");
