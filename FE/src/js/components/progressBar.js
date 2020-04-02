@@ -17,10 +17,26 @@ let loopTimer = null;
 let isAnimationPlayable = true;
 let touchStartPosX = null;
 
-const selectImageIndex = images => {};
+let imgLength = null;
+const imgChangePoint = [];
+const latestImg = {
+  elem: null,
+  index: null,
+};
 
-const controlImages = () => {
-  // latestImg = 이 전역변수에 여기에 이미지 변경한 인덱스 이미지를 담고, 다음에 이 이미지의 클래스를 삭제.
+const setImageChangePoint = () => {
+  imgLength = forecastImages().length;
+  const basePoint = Math.floor(MAX_PERCENTAGE / imgLength);
+  let point = basePoint;
+  while (point <= MAX_PERCENTAGE) {
+    imgChangePoint.push(point);
+    point += basePoint;
+  }
+};
+
+const initlatestImage = () => {
+  [latestImg.elem] = forecastImages();
+  latestImg.index = 0;
 };
 
 const setProgressBarPosX = posX => {
@@ -49,14 +65,33 @@ const resetProgressAnimation = animation => {
   pbAnimation = window.requestAnimationFrame(animation);
 };
 
+const changeImage = (posX, changePoint) => {
+  if (latestImg.index >= imgLength - 1) return;
+  if (posX < changePoint[latestImg.index]) return;
+  removeClass(CLASS_NAME.active, latestImg.elem);
+  latestImg.index += 1;
+  latestImg.elem = selectViewImage(forecastImages(), latestImg.index);
+  addClass(CLASS_NAME.active, latestImg.elem);
+};
+
+const resetLatestImage = () => {
+  removeClass(CLASS_NAME.active, latestImg.elem);
+  initlatestImage();
+  addClass(CLASS_NAME.active, latestImg.elem);
+};
+
 const progressAnimation = () => {
   if (progressPosX < MAX_PERCENTAGE) {
     progressPosX += IMAGE_PLAY_SPEED;
     setProgressBarPosX(progressPosX);
     pbAnimation = window.requestAnimationFrame(progressAnimation);
+    changeImage(progressPosX, imgChangePoint);
     return;
   }
-  loopTimer = setTimeout(() => resetProgressAnimation(progressAnimation), IMAGE_LOOP_INTERVAL);
+  loopTimer = setTimeout(() => {
+    resetProgressAnimation(progressAnimation);
+    resetLatestImage();
+  }, IMAGE_LOOP_INTERVAL);
 };
 
 const stopProgressAnimation = () => {
@@ -97,6 +132,8 @@ const changeProgressPosX = () => {
 };
 
 export default () => {
+  initlatestImage();
+  setImageChangePoint();
   addMultipleEventListener(progressBarElem.playButton, toggleProgressAnimation, "touchstart", "click");
   progressBarElem.controlButton.addEventListener("touchstart", event => setTouchStartPosX(event));
   progressBarElem.controlButton.addEventListener("touchmove", event => changeProgressBarPosX(event));
