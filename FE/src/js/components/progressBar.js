@@ -50,9 +50,9 @@ const resetProgressAnimation = animation => {
 };
 
 const progressAnimation = () => {
-  progressPosX += IMAGE_PLAY_SPEED;
-  setProgressBarPosX(progressPosX);
   if (progressPosX < MAX_PERCENTAGE) {
+    progressPosX += IMAGE_PLAY_SPEED;
+    setProgressBarPosX(progressPosX);
     pbAnimation = window.requestAnimationFrame(progressAnimation);
     return;
   }
@@ -82,11 +82,11 @@ const setTouchStartPosX = event => {
   isAnimationPlayable = false;
   stopProgressAnimation();
   changePlayButtonState();
-  touchStartPosX = Math.floor(event.touches[0].clientX);
+  touchStartPosX = event.touches[0].clientX;
 };
 
 const changeProgressBarPosX = event => {
-  const currentTouchPosX = Math.floor(event.touches[0].clientX);
+  const currentTouchPosX = event.touches[0].clientX;
   const offsetPosX = currentTouchPosX - touchStartPosX;
   changeProgressBarWidth(offsetPosX);
 };
