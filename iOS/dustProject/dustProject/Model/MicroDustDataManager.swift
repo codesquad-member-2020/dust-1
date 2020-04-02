@@ -9,7 +9,8 @@
 import Foundation
 
 class MicroDustDataManager{
-        let microDustURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/%EA%B0%95%EB%82%A8%EA%B5%AC/daily-dust-status"
+//        let microDustURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/%EA%B0%95%EB%82%A8%EA%B5%AC/daily-dust-status"
+    let microDustURL = "http://192.168.1.245:8080/mock/%EA%B0%95%EB%82%A8%EA%B5%AC/daily-dust-status"
     
     static let MicroDustDecodedNotification = NSNotification.Name("MicroDustDecodedNotification")
     

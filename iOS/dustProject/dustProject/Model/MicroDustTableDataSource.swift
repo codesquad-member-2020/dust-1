@@ -22,16 +22,25 @@ class MicroDustTableDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MicroDustTableViewCell.identifier, for: indexPath) as! MicroDustTableViewCell
-        let figureValue =  microDustDataManager.giveFigureData(for: indexPath.item)
-        let dateTime = microDustDataManager.giveDateTImeData(for: indexPath.item)
+        // Bring Data
+        var figureValue =  microDustDataManager.giveFigureData(for: indexPath.item)
+        var dateTime = microDustDataManager.giveDateTImeData(for: indexPath.item)
         let grade = microDustDataManager.giveGradeData(for: indexPath.item)
         
-        cell.figureValueLabel.text = figureValue
-        let grades = Grade(rawValue: grade)
-        let percentageColor = self.setCellBackground(grade: grades!)
-        
-        cell.percentageView.backgroundColor = percentageColor
+        // Deal with nil value
+        if figureValue == "-1" || dateTime == nil {
+            figureValue = " X "
+            dateTime = " X "
+        }
+        var grades = Grade(rawValue: grade)
+        if grades == nil {
+            grades = .None
+        }
 
+        // setup views in cell
+        cell.figureValueLabel.text = figureValue
+        let percentageColor = self.setCellBackground(grade: grades!)
+        cell.percentageView.backgroundColor = percentageColor
         let floatValue = CGFloat(NSString(string: figureValue).floatValue)
         let fillWidth : CGFloat = (floatValue / totalWidth) * cell.frame.size.width
         cell.setPercentage(fillWidth)
