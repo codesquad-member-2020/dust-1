@@ -37,10 +37,13 @@
 
 .forecast-inform-overall {
   font-size: 1.125rem;
+  font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .forecast-inform-grade {
+  font-size: 0.875rem;
+  line-height: 1.5;
   color: $grey-0;
   margin-bottom: $bottom-gap;
 }
