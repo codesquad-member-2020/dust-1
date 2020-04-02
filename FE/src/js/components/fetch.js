@@ -1,8 +1,8 @@
 import { API_URL } from "../utils/constants";
 import { renderStatus, renderStationName, showErrorMessage } from "./dustStatus";
 import { renderGraph, addGraphScrollEvent } from "./graph";
-import { renderForecast } from "./forecast";
-import { addProgressBarTouchEvent } from "./progressBar";
+import { renderForecast, forecastContents } from "./forecast";
+import addProgressBarTouchEvent from "./progressBar";
 
 const isDataValid = data => data.pm10Value >= 0;
 
