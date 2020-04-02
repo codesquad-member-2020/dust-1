@@ -14,6 +14,12 @@ public class DustStatus {
         this.dateTime = dustStatusJSONObject.get("dataTime").asText();
     }
 
+    public DustStatus(String pm10Grade1h, String pm10Value, String dateTime) {
+        this.pm10Grade1h = pm10Grade1h;
+        this.pm10Value = pm10Value;
+        this.dateTime = dateTime;
+    }
+
     private String getPm10ValueFrom(JsonNode dustStatusJSONObject) {
         String pm10ValueJSON = dustStatusJSONObject.get("pm10Value").asText();
         return pm10ValueJSON.equals("-") ? "-1" : pm10ValueJSON;
