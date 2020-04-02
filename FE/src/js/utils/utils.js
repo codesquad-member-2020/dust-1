@@ -8,8 +8,10 @@ export const addClass = (className, target) => target.classList.add(className);
 
 export const removeClass = (className, target) => target.classList.remove(className);
 
+export const hasClass = (className, target) => target.classList.contains(className);
+
 export const toggleClass = (className, target) => {
-  if (target.classList.contains(className)) removeClass(className, target);
+  if (hasClass(className, target)) removeClass(className, target);
   else addClass(className, target);
 };
 
