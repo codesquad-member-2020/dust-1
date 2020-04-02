@@ -1,11 +1,11 @@
 import { _q } from "../utils/utils";
-import { CLASS_NAME, MAX_DUST_VALUE, MIN_PERCENTAGE, getGradeClassName } from "../utils/constants";
+import { CLASS_NAME, MAX_DUST_VALUE, MAX_PERCENTAGE, MIN_PERCENTAGE, getGradeClassName } from "../utils/constants";
 
 const graphsElement = _q(`.${CLASS_NAME.graphs}`);
 
 const calculateGraphWidth = dustValue => {
-  const percentage = Math.floor((dustValue / MAX_DUST_VALUE) * 100);
-  if (percentage > 100) return 100;
+  const percentage = Math.floor((dustValue / MAX_DUST_VALUE) * MAX_PERCENTAGE);
+  if (percentage > MAX_PERCENTAGE) return MAX_PERCENTAGE;
   if (percentage <= MIN_PERCENTAGE) return MIN_PERCENTAGE;
   return percentage;
 };
