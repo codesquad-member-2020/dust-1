@@ -1,6 +1,6 @@
-import { _q, addClass, removeClass, hasClass, addMultipleEventListener, clearClass } from "../utils/utils";
+import { _q, addClass, removeClass, addMultipleEventListener } from "../utils/utils";
 import { CLASS_NAME, FORECAST_PLAY_BUTTON_ICON, IMAGE_PLAY_SPEED, IMAGE_LOOP_INTERVAL, MAX_PERCENTAGE } from "../utils/constants";
-import { forecastImages, selectViewImage } from "./forecast";
+import { changeImage, resetLatestImage } from "./imageChanger";
 
 const progressBarElem = {
   wrap: _q(`.${CLASS_NAME.progressBarWrap}`),
@@ -17,28 +17,6 @@ let loopTimer = null;
 let isAnimationPlayable = true;
 let touchStartPosX = null;
 
-let imgLength = null;
-const imgChangePoint = [];
-const latestImg = {
-  elem: null,
-  index: null,
-};
-
-const setImageChangePoint = () => {
-  imgLength = forecastImages().length;
-  const basePoint = Math.floor(MAX_PERCENTAGE / imgLength);
-  let point = basePoint;
-  while (point <= MAX_PERCENTAGE) {
-    imgChangePoint.push(point);
-    point += basePoint;
-  }
-};
-
-const initlatestImage = () => {
-  [latestImg.elem] = forecastImages();
-  latestImg.index = 0;
-};
-
 const setProgressBarPosX = posX => {
   progressBarElem.controlButton.style.left = `${posX}%`;
   progressBarElem.currentProgress.style.width = `${posX}%`;
@@ -46,7 +24,7 @@ const setProgressBarPosX = posX => {
 
 const moveProgressBar = percentage => setProgressBarPosX(progressPosX + percentage);
 
-const changePlayButtonState = () => {
+const togglePlayButtonState = () => {
   if (isAnimationPlayable) {
     isAnimationPlayable = false;
     addClass(CLASS_NAME.playing, progressBarElem.playButton);
@@ -65,27 +43,12 @@ const resetProgressAnimation = animation => {
   pbAnimation = window.requestAnimationFrame(animation);
 };
 
-const changeImage = (posX, changePoint) => {
-  if (latestImg.index >= imgLength - 1) return;
-  if (posX < changePoint[latestImg.index]) return;
-  removeClass(CLASS_NAME.active, latestImg.elem);
-  latestImg.index += 1;
-  latestImg.elem = selectViewImage(forecastImages(), latestImg.index);
-  addClass(CLASS_NAME.active, latestImg.elem);
-};
-
-const resetLatestImage = () => {
-  removeClass(CLASS_NAME.active, latestImg.elem);
-  initlatestImage();
-  addClass(CLASS_NAME.active, latestImg.elem);
-};
-
 const progressAnimation = () => {
   if (progressPosX < MAX_PERCENTAGE) {
     progressPosX += IMAGE_PLAY_SPEED;
     setProgressBarPosX(progressPosX);
     pbAnimation = window.requestAnimationFrame(progressAnimation);
-    changeImage(progressPosX, imgChangePoint);
+    changeImage(progressPosX);
     return;
   }
   loopTimer = setTimeout(() => {
@@ -101,8 +64,9 @@ const stopProgressAnimation = () => {
 
 const toggleProgressAnimation = event => {
   event.preventDefault();
-  isAnimationPlayable ? progressAnimation() : stopProgressAnimation();
-  changePlayButtonState();
+  if (isAnimationPlayable) progressAnimation();
+  else stopProgressAnimation();
+  togglePlayButtonState();
 };
 
 const changeProgressBarWidth = posX => {
@@ -116,7 +80,7 @@ const changeProgressBarWidth = posX => {
 const setTouchStartPosX = event => {
   isAnimationPlayable = false;
   stopProgressAnimation();
-  changePlayButtonState();
+  togglePlayButtonState();
   touchStartPosX = event.touches[0].clientX;
 };
 
@@ -132,8 +96,6 @@ const changeProgressPosX = () => {
 };
 
 export default () => {
-  initlatestImage();
-  setImageChangePoint();
   addMultipleEventListener(progressBarElem.playButton, toggleProgressAnimation, "touchstart", "click");
   progressBarElem.controlButton.addEventListener("touchstart", event => setTouchStartPosX(event));
   progressBarElem.controlButton.addEventListener("touchmove", event => changeProgressBarPosX(event));
