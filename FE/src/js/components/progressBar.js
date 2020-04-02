@@ -12,10 +12,10 @@ const progressBarElem = {
 };
 
 let progressPosX = 0;
-let progressBarAnimation = null;
+let pbAnimation = null;
 let loopTimer = null;
 let isAnimationPlayable = true;
-let startTouchPosX = null;
+let touchStartPosX = null;
 
 const selectImageIndex = images => {};
 
@@ -23,12 +23,12 @@ const controlImages = () => {
   // latestImg = 이 전역변수에 여기에 이미지 변경한 인덱스 이미지를 담고, 다음에 이 이미지의 클래스를 삭제.
 };
 
-const setProgressBarStyle = posX => {
+const setProgressBarPosX = posX => {
   progressBarElem.controlButton.style.left = `${posX}%`;
   progressBarElem.currentProgress.style.width = `${posX}%`;
 };
 
-const moveProgressBar = percentage => setProgressBarStyle(progressPosX + percentage);
+const moveProgressBar = percentage => setProgressBarPosX(progressPosX + percentage);
 
 const changePlayButtonState = () => {
   if (isAnimationPlayable) {
@@ -44,33 +44,33 @@ const changePlayButtonState = () => {
 
 const resetProgressAnimation = animation => {
   progressPosX = 0;
-  setProgressBarStyle(progressPosX);
-  window.cancelAnimationFrame(progressBarAnimation);
-  progressBarAnimation = window.requestAnimationFrame(animation);
+  setProgressBarPosX(progressPosX);
+  window.cancelAnimationFrame(pbAnimation);
+  pbAnimation = window.requestAnimationFrame(animation);
 };
 
-const loopProgressAnimation = () => {
+const progressAnimation = () => {
   progressPosX += IMAGE_PLAY_SPEED;
-  setProgressBarStyle(progressPosX);
+  setProgressBarPosX(progressPosX);
   if (progressPosX < MAX_PERCENTAGE) {
-    progressBarAnimation = window.requestAnimationFrame(loopProgressAnimation);
+    pbAnimation = window.requestAnimationFrame(progressAnimation);
     return;
   }
-  loopTimer = setTimeout(() => resetProgressAnimation(loopProgressAnimation), IMAGE_LOOP_INTERVAL);
+  loopTimer = setTimeout(() => resetProgressAnimation(progressAnimation), IMAGE_LOOP_INTERVAL);
 };
 
 const stopProgressAnimation = () => {
   clearTimeout(loopTimer);
-  window.cancelAnimationFrame(progressBarAnimation);
+  window.cancelAnimationFrame(pbAnimation);
 };
 
 const toggleProgressAnimation = event => {
   event.preventDefault();
-  isAnimationPlayable ? loopProgressAnimation() : stopProgressAnimation();
+  isAnimationPlayable ? progressAnimation() : stopProgressAnimation();
   changePlayButtonState();
 };
 
-const calculateProgressBarWidth = posX => {
+const changeProgressBarWidth = posX => {
   const barWidth = progressBarElem.bar.offsetWidth;
   const percentage = Math.floor((posX / barWidth) * MAX_PERCENTAGE);
   const sumPercentage = progressPosX + percentage;
@@ -78,27 +78,27 @@ const calculateProgressBarWidth = posX => {
   moveProgressBar(percentage);
 };
 
-const setStartTouchPosX = event => {
+const setTouchStartPosX = event => {
   isAnimationPlayable = false;
   stopProgressAnimation();
   changePlayButtonState();
-  startTouchPosX = Math.floor(event.touches[0].clientX);
+  touchStartPosX = Math.floor(event.touches[0].clientX);
 };
 
-const moveControlButton = event => {
+const changeProgressBarPosX = event => {
   const currentTouchPosX = Math.floor(event.touches[0].clientX);
-  const offsetPosX = currentTouchPosX - startTouchPosX;
-  calculateProgressBarWidth(offsetPosX);
+  const offsetPosX = currentTouchPosX - touchStartPosX;
+  changeProgressBarWidth(offsetPosX);
 };
 
-const setProgressPosX = () => {
+const changeProgressPosX = () => {
   const [currentPosX] = progressBarElem.controlButton.style.left.split("%");
   progressPosX = parseInt(currentPosX, 10);
 };
 
 export default () => {
   addMultipleEventListener(progressBarElem.playButton, toggleProgressAnimation, "touchstart", "click");
-  progressBarElem.controlButton.addEventListener("touchstart", event => setStartTouchPosX(event));
-  progressBarElem.controlButton.addEventListener("touchmove", event => moveControlButton(event));
-  progressBarElem.controlButton.addEventListener("touchend", () => setProgressPosX());
+  progressBarElem.controlButton.addEventListener("touchstart", event => setTouchStartPosX(event));
+  progressBarElem.controlButton.addEventListener("touchmove", event => changeProgressBarPosX(event));
+  progressBarElem.controlButton.addEventListener("touchend", () => changeProgressPosX());
 };
