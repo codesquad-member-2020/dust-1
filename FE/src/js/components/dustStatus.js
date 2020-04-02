@@ -1,13 +1,15 @@
-import { _q, getGradeClassName, getGradeEmoji, getGradeText, addClass, clearClass, getRestGradeClassName } from "../utils/utils";
-import { CLASS_NAME, STATUS_STRING, ERROR_MESSAGE } from "../utils/constants";
+import { _q, addClass, clearClass } from "../utils/utils";
+import { CLASS_NAME, STATUS_STRING, ERROR_MESSAGE, getGradeClassName, getGradeEmoji, getGradeText, getRestGradeClassName } from "../utils/constants";
 
 export const dustContents = _q(`.${CLASS_NAME.dustContents}`);
 
-const emojiElement = _q(`.${CLASS_NAME.dustEmoji}`);
-const gradeElement = _q(`.${CLASS_NAME.dustGrade}`);
-const valueElement = _q(`.${CLASS_NAME.dustValue}`);
-const timeElement = _q(`.${CLASS_NAME.dustTime}`);
-const stationElement = _q(`.${CLASS_NAME.dustStation}`);
+const dustElements = {
+  emoji: _q(`.${CLASS_NAME.dustEmoji}`),
+  grade: _q(`.${CLASS_NAME.dustGrade}`),
+  value: _q(`.${CLASS_NAME.dustValue}`),
+  time: _q(`.${CLASS_NAME.dustTime}`),
+  station: _q(`.${CLASS_NAME.dustStation}`),
+};
 
 const isToday = (targetYear, targetMonth, targetDay) => {
   const currentDateTime = new Date();
@@ -37,21 +39,21 @@ const isDuplicateData = (targetDateTime, currentTimeElement) => {
 };
 
 export const renderStationName = stationName => {
-  stationElement.innerHTML = STATUS_STRING.station(CLASS_NAME.stationName, stationName);
+  dustElements.station.innerHTML = STATUS_STRING.station(CLASS_NAME.stationName, stationName);
 };
 
 export const showErrorMessage = () => {
-  emojiElement.innerHTML = ERROR_MESSAGE.emoji;
-  gradeElement.innerHTML = ERROR_MESSAGE.code;
-  stationElement.innerHTML = ERROR_MESSAGE.text;
+  dustElements.emoji.innerHTML = ERROR_MESSAGE.emoji;
+  dustElements.grade.innerHTML = ERROR_MESSAGE.code;
+  dustElements.station.innerHTML = ERROR_MESSAGE.text;
 };
 
 export const renderStatus = dustData => {
   const { pm10Grade1h, pm10Value, dateTime } = dustData;
-  if (isDuplicateData(dateTime, timeElement)) return;
+  if (isDuplicateData(dateTime, dustElements.time)) return;
   changeBackgroundColor(getGradeClassName(pm10Grade1h), dustContents);
-  emojiElement.innerHTML = getGradeEmoji(pm10Grade1h);
-  gradeElement.innerHTML = getGradeText(pm10Grade1h);
-  valueElement.innerHTML = STATUS_STRING.dustValue(pm10Value);
-  timeElement.innerHTML = processTime(dateTime);
+  dustElements.emoji.innerHTML = getGradeEmoji(pm10Grade1h);
+  dustElements.grade.innerHTML = getGradeText(pm10Grade1h);
+  dustElements.value.innerHTML = STATUS_STRING.dustValue(pm10Value);
+  dustElements.time.innerHTML = processTime(dateTime);
 };
