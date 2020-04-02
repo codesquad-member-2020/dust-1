@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeY-0w-Mr4">
-                                        <rect key="frame" x="281.5" y="276" width="61" height="27"/>
+                                        <rect key="frame" x="281.5" y="278" width="61" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -64,7 +64,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="best" translatesAutoresizingMaskIntoConstraints="NO" id="boV-E6-pP0">
                                         <rect key="frame" x="125" y="91" width="164" height="80"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-rY-BR1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강남구" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-rY-BR1">
                                         <rect key="frame" x="140" y="325.5" width="52" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -82,7 +82,7 @@
                                     <constraint firstItem="iIy-8e-mov" firstAttribute="centerX" secondItem="9j2-hW-8op" secondAttribute="centerX" id="OaG-Tq-n6N"/>
                                     <constraint firstItem="86Y-Jn-QFz" firstAttribute="leading" secondItem="FdA-rY-BR1" secondAttribute="trailing" constant="21" id="Tdy-l4-b7t"/>
                                     <constraint firstItem="86Y-Jn-QFz" firstAttribute="top" secondItem="6pG-7w-WqY" secondAttribute="bottom" constant="19" id="Vj7-T9-Shm"/>
-                                    <constraint firstItem="AeY-0w-Mr4" firstAttribute="top" secondItem="boV-E6-pP0" secondAttribute="bottom" constant="105" id="Vvu-T1-YWj"/>
+                                    <constraint firstItem="AeY-0w-Mr4" firstAttribute="top" secondItem="boV-E6-pP0" secondAttribute="bottom" constant="107" id="Vvu-T1-YWj"/>
                                     <constraint firstItem="tAa-uG-Hfk" firstAttribute="centerX" secondItem="9j2-hW-8op" secondAttribute="centerX" constant="-50" id="bcR-jm-7s9"/>
                                     <constraint firstItem="iIy-8e-mov" firstAttribute="top" secondItem="boV-E6-pP0" secondAttribute="bottom" constant="10" id="dH7-0n-WGl"/>
                                     <constraint firstAttribute="trailing" secondItem="AeY-0w-Mr4" secondAttribute="trailing" constant="71.5" id="dHa-dF-7Nj"/>
@@ -148,6 +148,13 @@
                         <color key="badgeColor" name="classicBlue"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="backgroundView" destination="9j2-hW-8op" id="CVK-Gy-egh"/>
+                        <outlet property="conditionLabel" destination="iIy-8e-mov" id="z9N-t4-EL4"/>
+                        <outlet property="dateLabel" destination="6pG-7w-WqY" id="ymA-NH-0wL"/>
+                        <outlet property="dateTimeLabel" destination="AeY-0w-Mr4" id="msz-JE-JOm"/>
+                        <outlet property="emojiImageView" destination="boV-E6-pP0" id="rOU-XQ-31o"/>
+                        <outlet property="figureLabel" destination="3FK-8O-R0s" id="rhB-Bc-hkB"/>
+                        <outlet property="locationLabel" destination="FdA-rY-BR1" id="keh-4t-xUg"/>
                         <outlet property="microDustTableView" destination="RiB-8a-1is" id="KjA-ln-gyX"/>
                     </connections>
                 </viewController>

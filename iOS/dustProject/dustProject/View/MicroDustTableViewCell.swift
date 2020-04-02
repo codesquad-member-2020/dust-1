@@ -9,10 +9,13 @@
 import UIKit
 
 class MicroDustTableViewCell: UITableViewCell {
+    
     static let identifier = "microDustCell"
-    
+    var figureValue = ""
+    var dateTime = ""
+    var grade : Grade = .None
+
     @IBOutlet var percentageView: PercentageView!
-    
     @IBOutlet var figureValueLabel: FigureValueLabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,7 +28,6 @@ class MicroDustTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print(percentageView.constraints)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -34,5 +36,11 @@ class MicroDustTableViewCell: UITableViewCell {
     
     func setPercentage(_ fillWidth: CGFloat) {
         percentageView.frame = CGRect(x: 0, y: 0, width: fillWidth, height: 30)
+    }
+    
+    func updateViewInformation(figureValue: String, dateTime: String, grade: Grade) {
+        self.figureValue = figureValue
+        self.dateTime = dateTime
+        self.grade = grade
     }
 }
