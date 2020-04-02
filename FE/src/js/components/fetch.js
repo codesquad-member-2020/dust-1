@@ -2,6 +2,7 @@ import { API_URL } from "../utils/constants";
 import { renderStatus, renderStationName, showErrorMessage } from "./dustStatus";
 import { renderGraph, addGraphScrollEvent } from "./graph";
 import { renderForecast } from "./forecast";
+import { addProgressBarTouchEvent } from "./progressBar";
 
 const isDataValid = data => data.pm10Value >= 0;
 
@@ -39,5 +40,8 @@ export const getForecast = () => {
     method: "GET",
   })
     .then(response => response.json())
-    .then(forecastData => renderForecast(forecastData));
+    .then(forecastData => {
+      renderForecast(forecastData);
+      addProgressBarTouchEvent();
+    });
 };
