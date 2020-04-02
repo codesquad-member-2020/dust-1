@@ -1,11 +1,11 @@
 import { CLASS_NAME } from "../utils/constants";
 import { _q, reverseClass } from "../utils/utils";
 import { dustContents } from "./dustStatus";
+import { forecastContents } from "./forecast";
 
 const tabs = _q(`.${CLASS_NAME.tabs}`);
 const dustTab = _q(`.${CLASS_NAME.dustTab}`);
 const forecastTab = _q(`.${CLASS_NAME.forecastTab}`);
-const forecastContents = _q(`.${CLASS_NAME.forecastContents}`);
 
 const changeTab = event => {
   event.preventDefault();

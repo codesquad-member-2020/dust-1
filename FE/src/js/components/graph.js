@@ -1,5 +1,5 @@
-import { _q, getGradeClassName } from "../utils/utils";
-import { CLASS_NAME, MAX_DUST_VALUE, MIN_PERCENTAGE } from "../utils/constants";
+import { _q } from "../utils/utils";
+import { CLASS_NAME, MAX_DUST_VALUE, MIN_PERCENTAGE, getGradeClassName } from "../utils/constants";
 
 const graphsElement = _q(`.${CLASS_NAME.graphs}`);
 
