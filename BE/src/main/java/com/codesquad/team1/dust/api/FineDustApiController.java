@@ -3,9 +3,11 @@ package com.codesquad.team1.dust.api;
 import com.codesquad.team1.dust.domain.DustStatus;
 import com.codesquad.team1.dust.domain.Forecast;
 import com.codesquad.team1.dust.domain.StationLocation;
+import com.codesquad.team1.dust.util.ImageResourceUtils;
 import com.codesquad.team1.dust.util.KakaoAPIUtils;
 import com.codesquad.team1.dust.util.PublicAPIUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,7 +60,9 @@ public class FineDustApiController {
     @GetMapping("/forecast")
     public Forecast showForecastOfFineDust() throws URISyntaxException, JsonProcessingException {
         String today = LocalDate.now().toString();
-        Forecast forecast = new Forecast(PublicAPIUtils.getForecastJSONObject(today));
+        JsonNode forecastObject = PublicAPIUtils.getForecastJSONObject(today);
+        List<String> imageURLs= ImageResourceUtils.parseImageURLs(forecastObject);
+        Forecast forecast = new Forecast(forecastObject, imageURLs);
 
         log.debug("forecast: {}", forecast);
 
