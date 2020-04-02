@@ -1,10 +1,11 @@
-import { _q, addClass, clearClass } from "../utils/utils";
+import { _q, _qa, addClass, clearClass } from "../utils/utils";
 import { CLASS_NAME, FORECAST_IMG_ALT } from "../utils/constants";
 
 export const forecastContents = _q(`.${CLASS_NAME.forecastContents}`);
 
 const forecastElements = {
-  images: _q(`.${CLASS_NAME.forecastImages}`),
+  imagesWrap: _q(`.${CLASS_NAME.forecastImagesWrap}`),
+  images: null,
   inform: _q(`.${CLASS_NAME.forecastInform}`),
   progressBarIcon: _q(`${CLASS_NAME.progressBarIcon}`),
 };
@@ -18,12 +19,14 @@ const forecastImageContent = images =>
     return imageElement;
   }, "");
 
-const selectViewImage = () => {};
+const selectViewImage = (images, index = 0) => addClass(CLASS_NAME.active, images[index]);
 
 export const renderForecast = forecastData => {
   const { informOverall, informGrade, images } = forecastData;
   forecastElements.inform.innerHTML = forecastInformContent(informOverall, informGrade);
-  forecastElements.images.innerHTML = forecastImageContent(images);
+  forecastElements.imagesWrap.innerHTML = forecastImageContent(images);
+  forecastElements.images = _qa(`.${CLASS_NAME.forecastImage}`);
+  selectViewImage(forecastElements.images);
 };
 
 const changePlayButtonIcon = () => {

@@ -12,21 +12,21 @@
   text-align: center;
 }
 
-.forecast-images {
+.forecast-images-wrap {
   text-align: center;
-  img {
+}
+
+.forecast-image {
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid $grey-1;
+  &.active {
     display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    max-height: 100%;
-    max-width: 100%;
-    display: block;
-    box-sizing: border-box;
-    border: 1px solid $grey-1;
-    &.hidden {
-      display: none;
-    }
   }
 }
 

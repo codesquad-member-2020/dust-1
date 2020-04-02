@@ -14,7 +14,7 @@ export const CLASS_NAME = {
   graph: "graph",
   graphWrap: "graph-wrap",
   graphValue: "value",
-  forecastImages: "forecast-images",
+  forecastImagesWrap: "forecast-images-wrap",
   forecastImage: "forecast-image",
   forecastInform: "forecast-inform",
   forecastInformOverall: "forecast-inform-overall",
