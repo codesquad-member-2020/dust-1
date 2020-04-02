@@ -19,7 +19,11 @@ export const CLASS_NAME = {
   forecastInform: "forecast-inform",
   forecastInformOverall: "forecast-inform-overall",
   forecastInformGrade: "forecast-inform-grade ",
-  progressBarIcon: "material-icons",
+  progressBarWrap: "progress-bar-wrap",
+  progressBar: "current-progress",
+  playButton: "play-btn",
+  controlButton: "control-btn",
+  playButtonIcon: "material-icons",
   placeholder: "placeholder",
   grade1: "good",
   grade2: "normal",
@@ -53,10 +57,12 @@ export const GPS_ALERT_MESSAGE = `GPS가 지원되지 않습니다. 측정소는
 
 export const FORECAST_IMG_ALT = "미세먼지 예보 이미지";
 
-export const FORECAST_PLAY_BUTTON = {
+export const FORECAST_PLAY_BUTTON_ICON = {
   play: "play_arrow",
   pause: "pause",
 };
+
+export const IMAGE_PLAY_SPEED = 0.5;
 
 const serverURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/";
 
