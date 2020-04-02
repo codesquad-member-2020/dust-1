@@ -9,17 +9,34 @@
 import UIKit
 
 class MicroDustViewController: UIViewController {
-    //MARK: - Property
-    let dataSource = MicroDustTableDataSource()
     
-    //MARK: - View
+    private let dataSource = MicroDustTableDataSource()
+    private let cellHeight = 30
+    
     @IBOutlet weak var microDustTableView: UITableView!
     
-    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        microDustTableView.dataSource = dataSource
+        setupTableView()
+        setupNotification()
     }
     
-    //MARK: - Function
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: MicroDustDataManager.MicroDustDecodedNotification, object: nil)
+    }
+    
+    private func setupTableView() {
+        microDustTableView.dataSource = dataSource
+        microDustTableView.rowHeight = CGFloat(cellHeight)
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: MicroDustDataManager.MicroDustDecodedNotification, object: nil)
+    }
+    
+    @objc private func reloadTableView(notification: Notification) {
+        DispatchQueue.main.async {
+            self.microDustTableView.reloadData()
+        }
+    }
 }
