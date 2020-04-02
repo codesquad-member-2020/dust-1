@@ -3,7 +3,7 @@ import { CLASS_NAME, STATUS_STRING, ERROR_MESSAGE, getGradeClassName, getGradeEm
 
 export const dustContents = _q(`.${CLASS_NAME.dustContents}`);
 
-const dustElements = {
+const dustElem = {
   emoji: _q(`.${CLASS_NAME.dustEmoji}`),
   grade: _q(`.${CLASS_NAME.dustGrade}`),
   value: _q(`.${CLASS_NAME.dustValue}`),
@@ -39,21 +39,21 @@ const isDuplicateData = (targetDateTime, currentTimeElement) => {
 };
 
 export const renderStationName = stationName => {
-  dustElements.station.innerHTML = STATUS_STRING.station(CLASS_NAME.stationName, stationName);
+  dustElem.station.innerHTML = STATUS_STRING.station(CLASS_NAME.stationName, stationName);
 };
 
 export const showErrorMessage = () => {
-  dustElements.emoji.innerHTML = ERROR_MESSAGE.emoji;
-  dustElements.grade.innerHTML = ERROR_MESSAGE.code;
-  dustElements.station.innerHTML = ERROR_MESSAGE.text;
+  dustElem.emoji.innerHTML = ERROR_MESSAGE.emoji;
+  dustElem.grade.innerHTML = ERROR_MESSAGE.code;
+  dustElem.station.innerHTML = ERROR_MESSAGE.text;
 };
 
 export const renderStatus = dustData => {
   const { pm10Grade1h, pm10Value, dateTime } = dustData;
-  if (isDuplicateData(dateTime, dustElements.time)) return;
+  if (isDuplicateData(dateTime, dustElem.time)) return;
   changeBackgroundColor(getGradeClassName(pm10Grade1h), dustContents);
-  dustElements.emoji.innerHTML = getGradeEmoji(pm10Grade1h);
-  dustElements.grade.innerHTML = getGradeText(pm10Grade1h);
-  dustElements.value.innerHTML = STATUS_STRING.dustValue(pm10Value);
-  dustElements.time.innerHTML = processTime(dateTime);
+  dustElem.emoji.innerHTML = getGradeEmoji(pm10Grade1h);
+  dustElem.grade.innerHTML = getGradeText(pm10Grade1h);
+  dustElem.value.innerHTML = STATUS_STRING.dustValue(pm10Value);
+  dustElem.time.innerHTML = processTime(dateTime);
 };
