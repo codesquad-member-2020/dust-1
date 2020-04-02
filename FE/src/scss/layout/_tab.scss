@@ -1,10 +1,10 @@
 .tab {
-  display: flex;
   box-sizing: border-box;
   width: 100%;
   height: $tab-height;
   max-width: $MAX_WIDTH;
   button {
+    float: left;
     display: flex;
     width: 50%;
     height: $tab-height;
