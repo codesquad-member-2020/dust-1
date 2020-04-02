@@ -43,6 +43,8 @@ export const STATUS_STRING = {
 
 export const MAX_DUST_VALUE = 200;
 
+export const MAX_PERCENTAGE = 100;
+
 export const MIN_PERCENTAGE = 6;
 
 export const DEFAULT_STATION = "강남구";
