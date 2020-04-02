@@ -14,6 +14,12 @@ export const CLASS_NAME = {
   graph: "graph",
   graphWrap: "graph-wrap",
   graphValue: "value",
+  forecastImages: "forecast-images",
+  forecastImage: "forecast-image",
+  forecastInform: "forecast-inform",
+  forecastInformOverall: "forecast-inform-overall",
+  forecastInformGrade: "forecast-inform-grade ",
+  progressBarIcon: "material-icons",
   placeholder: "placeholder",
   grade1: "good",
   grade2: "normal",
@@ -44,6 +50,13 @@ export const ERROR_MESSAGE = {
 };
 
 export const GPS_ALERT_MESSAGE = `GPS가 지원되지 않습니다. 측정소는 ${DEFAULT_STATION}로 설정됩니다.`;
+
+export const FORECAST_IMG_ALT = "미세먼지 예보 이미지";
+
+export const FORECAST_PLAY_BUTTON = {
+  play: "play_arrow",
+  pause: "pause",
+};
 
 const serverURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/";
 
