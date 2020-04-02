@@ -1,5 +1,7 @@
 package com.codesquad.team1.dust.domain;
 
+import java.util.Objects;
+
 public class Image {
 
     private String imageUrl;
@@ -19,5 +21,18 @@ public class Image {
     @Override
     public String toString() {
         return "Image{" + "imageUrl='" + imageUrl + '\'' + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (!(o instanceof Image)) { return false; }
+        Image image = (Image) o;
+        return Objects.equals(getImageUrl(), image.getImageUrl());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getImageUrl());
     }
 }
