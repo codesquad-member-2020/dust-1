@@ -3,7 +3,7 @@ package com.codesquad.team1.dust.api;
 import com.codesquad.team1.dust.domain.DustStatus;
 import com.codesquad.team1.dust.domain.Forecast;
 import com.codesquad.team1.dust.domain.StationLocation;
-import com.codesquad.team1.dust.util.ImageResourceUtils;
+import com.codesquad.team1.dust.util.ResourceUtils;
 import com.codesquad.team1.dust.util.KakaoAPIUtils;
 import com.codesquad.team1.dust.util.PublicAPIUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -61,7 +61,7 @@ public class FineDustApiController {
     public Forecast showForecastOfFineDust() throws URISyntaxException, JsonProcessingException {
         String today = LocalDate.now().toString();
         JsonNode forecastObject = PublicAPIUtils.getForecastJSONObject(today);
-        List<String> imageURLs= ImageResourceUtils.parseImageURLs(forecastObject);
+        List<String> imageURLs= ResourceUtils.getImageURLs();
         Forecast forecast = new Forecast(forecastObject, imageURLs);
 
         log.debug("forecast: {}", forecast);
