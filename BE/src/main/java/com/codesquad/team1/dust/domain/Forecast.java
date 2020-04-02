@@ -12,10 +12,10 @@ public class Forecast {
     private String informGrade;
     private List<Image> images;
 
-    public Forecast(JsonNode forecastObject) {
+    public Forecast(JsonNode forecastObject, List<String> imageURLs) {
         this.informOverall = forecastObject.get("informOverall").asText();
         this.informGrade = forecastObject.get("informGrade").asText();
-        this.images = parseImages(forecastObject);
+        this.images = parseImages(imageURLs);
     }
 
     public Forecast(String informOverall, String informGrade, List<Image> images) {
@@ -27,9 +27,8 @@ public class Forecast {
     private List<Image> parseImages(JsonNode forecastObject) {
         List<Image> images = new ArrayList<>();
 
-        images.add(new Image(forecastObject.get("imageUrl1").asText()));
-        images.add(new Image(forecastObject.get("imageUrl2").asText()));
-        images.add(new Image(forecastObject.get("imageUrl3").asText()));
+        for (String imageURL : imageURLs)
+            images.add(new Image(imageURL));
 
         return images;
     }
