@@ -24,7 +24,7 @@ public class Forecast {
         this.images = images;
     }
 
-    private List<Image> parseImages(JsonNode forecastObject) {
+    private List<Image> parseImages(List<String> imageURLs) {
         List<Image> images = new ArrayList<>();
 
         for (String imageURL : imageURLs)
