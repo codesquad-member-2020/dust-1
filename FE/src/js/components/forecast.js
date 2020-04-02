@@ -18,7 +18,7 @@ const forecastImageContent = images =>
     return imageElement;
   }, "");
 
-const selectViewImage = (images, index = 0) => addClass(CLASS_NAME.active, images[index]);
+export const selectViewImage = (images, index = 0) => addClass(CLASS_NAME.active, images[index]);
 
 export const renderForecast = forecastData => {
   const { informOverall, informGrade, images } = forecastData;
