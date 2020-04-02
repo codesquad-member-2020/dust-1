@@ -1,6 +1,6 @@
 package com.codesquad.team1.dust.domain;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class DustStatus {
 
@@ -8,19 +8,19 @@ public class DustStatus {
     private String pm10Value;
     private String dateTime;
 
-    public DustStatus(JSONObject dustStatusJSONObject) {
+    public DustStatus(JsonNode dustStatusJSONObject) {
         this.pm10Grade1h = getPm10Grade1hFrom(dustStatusJSONObject);
         this.pm10Value = getPm10ValueFrom(dustStatusJSONObject);
-        this.dateTime = dustStatusJSONObject.getString("dataTime");
+        this.dateTime = dustStatusJSONObject.get("dataTime").asText();
     }
 
-    private String getPm10ValueFrom(JSONObject dustStatusJSONObject) {
-        String pm10ValueJSON = dustStatusJSONObject.getString("pm10Value");
+    private String getPm10ValueFrom(JsonNode dustStatusJSONObject) {
+        String pm10ValueJSON = dustStatusJSONObject.get("pm10Value").asText();
         return pm10ValueJSON.equals("-") ? "-1" : pm10ValueJSON;
     }
 
-    private String getPm10Grade1hFrom(JSONObject dustStatusJSONObject) {
-        String pm10Grade1hJSON = dustStatusJSONObject.getString("pm10Grade1h");
+    private String getPm10Grade1hFrom(JsonNode dustStatusJSONObject) {
+        String pm10Grade1hJSON = dustStatusJSONObject.get("pm10Grade1h").asText();
         return pm10Grade1hJSON.equals("") ? "-1" : pm10Grade1hJSON;
     }
 

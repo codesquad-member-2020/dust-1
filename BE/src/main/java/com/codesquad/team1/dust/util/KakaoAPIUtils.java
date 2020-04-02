@@ -1,6 +1,8 @@
 package com.codesquad.team1.dust.util;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -18,7 +20,7 @@ public class KakaoAPIUtils {
     private static final Logger log = LoggerFactory.getLogger(KakaoAPIUtils.class);
     private static final RestTemplate restTemplate = new RestTemplate();
 
-    public static JSONObject getTmCoordinateSystem(String latitude, String longitude) throws URISyntaxException {
+    public static JsonNode getTmCoordinateSystem(String latitude, String longitude) throws URISyntaxException, JsonProcessingException {
         URI kakaoApiRequestUrl = new URI(KAKAO_API_TRANS_GEO_COORDINATE_SYSTEM_AND_X + longitude
                 + AND_Y + latitude + AND_INPUT_COORDINATE_SYSTEM_WGS84 + AND_OUTPUT_COORDINATE_SYSTEM_TM);
         log.debug("requestUtl: {}", kakaoApiRequestUrl);
@@ -33,7 +35,8 @@ public class KakaoAPIUtils {
         String response = restTemplate.exchange(kakaoApiRequestUrl, HttpMethod.GET, httpEntity, String.class).getBody();
         log.debug(response);
 
-        JSONObject transResultJSONObject = new JSONObject(response).getJSONArray("documents").getJSONObject(0);
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode transResultJSONObject = mapper.readTree(response).get("documents").get(0);
         log.debug("transResultJSONObject: {}", transResultJSONObject);
 
         return transResultJSONObject;
