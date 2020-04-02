@@ -1,6 +1,6 @@
 package com.codesquad.team1.dust.domain;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class StationLocation {
 
@@ -12,9 +12,9 @@ public class StationLocation {
         this.location = location;
     }
 
-    public StationLocation(JSONObject nearestJSONObject) {
-        this.stationName = nearestJSONObject.getString("stationName");
-        this.location = nearestJSONObject.getString("addr");
+    public StationLocation(JsonNode nearestJSONObject) {
+        this.stationName = nearestJSONObject.get("stationName").asText();
+        this.location = nearestJSONObject.get("addr").asText();
     }
 
     public String getStationName() {
