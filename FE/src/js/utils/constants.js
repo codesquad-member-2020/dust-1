@@ -31,6 +31,7 @@ export const CLASS_NAME = {
   grade4: "very-bad",
   active: "active",
   hidden: "hidden",
+  playing: "playing",
 };
 
 export const STATUS_STRING = {
@@ -65,6 +66,8 @@ export const FORECAST_PLAY_BUTTON_ICON = {
 };
 
 export const IMAGE_PLAY_SPEED = 0.5;
+
+export const IMAGE_LOOP_INTERVAL = 1000;
 
 const serverURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/";
 

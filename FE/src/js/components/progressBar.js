@@ -1,5 +1,5 @@
-import { _q } from "../utils/utils";
-import { CLASS_NAME, FORECAST_PLAY_BUTTON_ICON, IMAGE_PLAY_SPEED, MAX_PERCENTAGE } from "../utils/constants";
+import { _q, addClass, removeClass, hasClass } from "../utils/utils";
+import { CLASS_NAME, FORECAST_PLAY_BUTTON_ICON, IMAGE_PLAY_SPEED, IMAGE_LOOP_INTERVAL, MAX_PERCENTAGE } from "../utils/constants";
 import { forecastImages, selectViewImage } from "./forecast";
 
 const progressBarElem = {
@@ -19,33 +19,52 @@ const calculateProgressBarWidth = () => {};
 
 const moveControlButton = () => {};
 
-const controlImages = () => {};
+const controlImages = () => {
+  // latestImg = 이 전역변수에 여기에 이미지 변경한 인덱스 이미지를 담고, 다음에 이 이미지의 클래스를 삭제.
+};
+
+const setProgressBarStyle = posX => {
+  progressBarElem.controlButton.style.left = `${posX}%`;
+  progressBarElem.bar.style.width = `${posX}%`;
+};
+
+const resetProgressAnimation = animation => {
+  progressPosX = 0;
+  setProgressBarStyle(progressPosX);
+  window.cancelAnimationFrame(progressBarAnimation);
+  progressBarAnimation = window.requestAnimationFrame(animation);
+};
 
 const startProgressAnimation = () => {
   progressPosX += IMAGE_PLAY_SPEED;
-  progressBarElem.controlButton.style.left = `${progressPosX}%`;
-  progressBarElem.bar.style.width = `${progressPosX}%`;
+  setProgressBarStyle(progressPosX);
   if (progressPosX <= MAX_PERCENTAGE) {
     progressBarAnimation = window.requestAnimationFrame(startProgressAnimation);
   }
+  if (progressPosX >= MAX_PERCENTAGE) {
+    setTimeout(() => resetProgressAnimation(startProgressAnimation), IMAGE_LOOP_INTERVAL);
+  }
 };
+
+const isPlayableState = () => hasClass(CLASS_NAME.playing, progressBarElem.playButton);
 
 const stopProgressAnimation = () => window.cancelAnimationFrame(progressBarAnimation);
 
 const changePlayButtonState = () => {
-  const currentIcon = progressBarElem.playButtonIcon.innerHTML;
-  if (currentIcon === FORECAST_PLAY_BUTTON_ICON.play) {
+  if (!isPlayableState()) {
+    addClass(CLASS_NAME.playing, progressBarElem.playButton);
     progressBarElem.playButtonIcon.innerHTML = FORECAST_PLAY_BUTTON_ICON.pause;
-  } else progressBarElem.playButtonIcon.innerHTML = FORECAST_PLAY_BUTTON_ICON.play;
+  } else {
+    removeClass(CLASS_NAME.playing, progressBarElem.playButton);
+    progressBarElem.playButtonIcon.innerHTML = FORECAST_PLAY_BUTTON_ICON.play;
+  }
 };
-
-const isPlayableState = () => progressBarElem.playButtonIcon.innerHTML === FORECAST_PLAY_BUTTON_ICON.play;
 
 const isProgressComplete = () => progressPosX >= MAX_PERCENTAGE;
 
 const playForecastImage = event => {
   event.preventDefault();
-  if (isPlayableState()) startProgressAnimation();
+  if (!isPlayableState()) startProgressAnimation();
   else stopProgressAnimation();
   if (!isProgressComplete()) changePlayButtonState();
 };

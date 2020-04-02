@@ -29,9 +29,8 @@ export const getNearestDustStation = (latitude, longitude) => {
     .then(stationData => {
       const { stationName, _ignore } = stationData;
       renderStationName(stationName);
-      return stationName;
+      getDailyDustStatus(stationName);
     })
-    .then(stationName => getDailyDustStatus(stationName))
     .catch(() => showErrorMessage());
 };
 

@@ -12,6 +12,9 @@
   .play-btn {
     border-radius: $border-radius;
     background-color: $blue;
+    &.playing {
+      background-color: $grey-0;
+    }
   }
 
   .material-icons {
