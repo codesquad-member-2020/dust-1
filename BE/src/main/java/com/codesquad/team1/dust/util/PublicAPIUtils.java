@@ -24,7 +24,7 @@ public class PublicAPIUtils {
     public static JsonNode getForecastJSONObject(String searchDate) throws URISyntaxException, JsonProcessingException {
         log.debug("검색한 날짜: {}", searchDate);
         URI publicApiRequestUrl = new URI(PUBLIC_API_FORECAST_URL_AND_SEARCH_DATE + searchDate
-                + AND_SERVICE_KEY + PUBLIC_API_SERVICE_KEY + AND_RETURN_TYPE_JSON);
+                + AND_SERVICE_KEY + PUBLIC_API_SERVICE_KEY + AND_VERSION + 1.1 + AND_RETURN_TYPE_JSON);
         log.debug("requestUrl: {}", publicApiRequestUrl);
 
         String response = restTemplate.getForObject(publicApiRequestUrl, String.class);
