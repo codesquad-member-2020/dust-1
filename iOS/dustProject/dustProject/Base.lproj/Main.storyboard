@@ -175,6 +175,26 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbK-07-bWy" customClass="BackgroundView" customModule="dustProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8w-1K-wif">
+                                        <rect key="frame" x="29" y="728.5" width="36" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" name="classicBlue"/>
+                                        <state key="normal" backgroundImage="play.fill" catalog="system">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="runButtonTapped:" destination="gnk-de-yDB" eventType="touchUpInside" id="bdu-eT-84d"/>
+                                        </connections>
+                                    </button>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XDA-Ob-ZVx">
+                                        <rect key="frame" x="71" y="729" width="324" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="gnk-de-yDB" eventType="valueChanged" id="7bN-bV-qtg"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미세먼지 예보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJ6-nc-M4f">
@@ -183,35 +203,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4AZ-nt-Fvq">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forecastPreviewImage" translatesAutoresizingMaskIntoConstraints="NO" id="4AZ-nt-Fvq">
                                 <rect key="frame" x="10" y="113" width="394" height="450"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="지역별 grade" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwV-qp-JOq">
-                                <rect key="frame" x="20" y="594" width="374" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지역별 grade" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwV-qp-JOq">
+                                <rect key="frame" x="20" y="594" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8w-1K-wif">
-                                <rect key="frame" x="35" y="752" width="29" height="16.5"/>
-                                <color key="tintColor" name="classicBlue"/>
-                                <state key="normal" backgroundImage="play.fill" catalog="system">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWo-4J-TsR">
                                 <rect key="frame" x="20" y="571" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qiQ-ZV-had">
-                                <rect key="frame" x="86" y="761" width="273" height="2"/>
-                            </progressView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="p8w-1K-wif" firstAttribute="leading" secondItem="YY2-Ii-mFe" secondAttribute="leading" constant="35" id="0QX-jt-oR7"/>
                             <constraint firstItem="uJ6-nc-M4f" firstAttribute="leading" secondItem="YY2-Ii-mFe" secondAttribute="leading" constant="100" id="5ld-0H-61s"/>
                             <constraint firstItem="UWo-4J-TsR" firstAttribute="top" secondItem="4AZ-nt-Fvq" secondAttribute="bottom" constant="8" id="7iz-Cf-A79"/>
                             <constraint firstItem="UWo-4J-TsR" firstAttribute="leading" secondItem="YY2-Ii-mFe" secondAttribute="leading" constant="20" id="9N1-om-4VP"/>
@@ -220,16 +229,11 @@
                             <constraint firstItem="uJ6-nc-M4f" firstAttribute="top" secondItem="YY2-Ii-mFe" secondAttribute="top" constant="10" id="HaY-sh-FYh"/>
                             <constraint firstItem="4AZ-nt-Fvq" firstAttribute="top" secondItem="nlF-h3-IRS" secondAttribute="top" constant="113" id="NYc-Dj-7My"/>
                             <constraint firstItem="uwV-qp-JOq" firstAttribute="top" secondItem="UWo-4J-TsR" secondAttribute="bottom" constant="5" id="Sw4-lL-gmI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qiQ-ZV-had" secondAttribute="trailing" constant="35" id="TPG-lV-4sN"/>
                             <constraint firstItem="4AZ-nt-Fvq" firstAttribute="leading" secondItem="YY2-Ii-mFe" secondAttribute="leading" constant="10" id="ZW8-Eg-89W"/>
-                            <constraint firstItem="qiQ-ZV-had" firstAttribute="leading" secondItem="nlF-h3-IRS" secondAttribute="leadingMargin" constant="66" id="abt-bi-Puf"/>
                             <constraint firstItem="uJ6-nc-M4f" firstAttribute="centerX" secondItem="nlF-h3-IRS" secondAttribute="centerX" id="bJa-yd-i7t"/>
                             <constraint firstItem="YY2-Ii-mFe" firstAttribute="trailing" secondItem="uJ6-nc-M4f" secondAttribute="trailing" constant="100" id="ed9-ar-wFH"/>
-                            <constraint firstItem="YY2-Ii-mFe" firstAttribute="trailing" secondItem="p8w-1K-wif" secondAttribute="trailing" constant="350" id="f41-wz-EZY"/>
                             <constraint firstItem="YY2-Ii-mFe" firstAttribute="bottom" secondItem="4AZ-nt-Fvq" secondAttribute="bottom" constant="250" id="hpO-1y-QPc"/>
                             <constraint firstItem="YY2-Ii-mFe" firstAttribute="trailing" secondItem="4AZ-nt-Fvq" secondAttribute="trailing" constant="10" id="lNR-dv-qce"/>
-                            <constraint firstItem="YY2-Ii-mFe" firstAttribute="bottom" secondItem="p8w-1K-wif" secondAttribute="bottom" constant="42.5" id="pFu-4c-qo7"/>
-                            <constraint firstItem="YY2-Ii-mFe" firstAttribute="bottom" secondItem="qiQ-ZV-had" secondAttribute="bottom" constant="50" id="pN6-Sc-mWu"/>
                             <constraint firstItem="4AZ-nt-Fvq" firstAttribute="centerX" secondItem="nlF-h3-IRS" secondAttribute="centerX" id="zh1-sc-ihp"/>
                             <constraint firstItem="uwV-qp-JOq" firstAttribute="leading" secondItem="YY2-Ii-mFe" secondAttribute="leading" constant="20" id="zhm-Ad-ALm"/>
                         </constraints>
@@ -237,7 +241,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="예보" image="clock.fill" catalog="system" selectedImage="clock.fill" id="rjJ-Xm-BWL"/>
                     <connections>
-                        <outlet property="imageProgressView" destination="qiQ-ZV-had" id="ixV-IK-Sd5"/>
+                        <outlet property="imageSlider" destination="XDA-Ob-ZVx" id="Xa6-qY-FeS"/>
                         <outlet property="informGrade" destination="uwV-qp-JOq" id="fgB-vT-UZs"/>
                         <outlet property="informOverall" destination="UWo-4J-TsR" id="t6M-Bg-3OR"/>
                         <outlet property="microDustImageView" destination="4AZ-nt-Fvq" id="IoJ-Ux-6A3"/>
@@ -277,6 +281,7 @@
         <image name="best" width="79" height="80"/>
         <image name="clock.fill" catalog="system" width="128" height="121"/>
         <image name="cloud.fill" catalog="system" width="128" height="84"/>
+        <image name="forecastPreviewImage" width="769" height="720"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <namedColor name="classicBlue">
             <color red="0.23921568627450981" green="0.52156862745098043" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
