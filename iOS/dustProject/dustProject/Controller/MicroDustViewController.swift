@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MicroDustViewController: UIViewController {
     
     private let dataSource = MicroDustTableDataSource()
     private let delegate = MicroDustTableViewDelegate()
     private let cellHeight = 30
-    
+    private let locationDataManager = LocationDataManager()
     @IBOutlet var backgroundView: BackgroundView!
     @IBOutlet weak var microDustTableView: UITableView!
     @IBOutlet var emojiImageView: UIImageView!
@@ -22,11 +23,36 @@ class MicroDustViewController: UIViewController {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var dateTimeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
+    private var nearestStation = ""
+    var locationManager =        CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNotification()
+        recognizeUserLocation()
+        guard let stationName = locationDataManager.locationInfo?.stationName else { return }
+        self.nearestStation = stationName
+        self.locationLabel.text = self.nearestStation
+    }
+    
+    private func recognizeUserLocation() {
+        locationManager.requestWhenInUseAuthorization()
+             var currentLocation: CLLocation!
+        currentLocation = locationManager.location
+        var latitude = currentLocation.coordinate.latitude
+        if latitude == nil {
+            var latitude = 37.4908447265625
+        }
+        var longitude = currentLocation.coordinate.longitude
+        if longitude == nil {
+            var longitude = 127.03370747206644
+        }
+        
+        
+        locationDataManager.requestLocation(latitude: latitude, longitude: longitude)
+        let nearestStation = locationDataManager.giveStationName()
+        self.nearestStation = nearestStation
     }
     
     deinit {
