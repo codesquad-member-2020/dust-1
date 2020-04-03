@@ -29,18 +29,36 @@ const setNextImage = () => {
   latestImage.elem = selectViewImage(forecastImages(), latestImage.index);
 };
 
-export const changeImage = posX => {
-  if (latestImage.index >= imageLength - 1) return;
-  if (posX < imageChangePoint[latestImage.index]) return;
+const setPrevImage = () => {
+  latestImage.index -= 1;
+  latestImage.elem = selectViewImage(forecastImages(), latestImage.index);
+};
+
+const changeClassAndimage = changeImageFunction => {
   removeClass(CLASS_NAME.active, latestImage.elem);
-  setNextImage();
+  changeImageFunction();
   addClass(CLASS_NAME.active, latestImage.elem);
 };
 
+const changePrevImage = posX => {
+  if (latestImage.index <= 0) return;
+  if (posX >= imageChangePoint[latestImage.index]) return;
+  changeClassAndimage(setPrevImage);
+};
+
+export const changeNextImage = posX => {
+  if (latestImage.index >= imageLength - 1) return;
+  if (posX < imageChangePoint[latestImage.index]) return;
+  changeClassAndimage(setNextImage);
+};
+
+export const changeImage = (percentage, latestPercentage, posX) => {
+  if (percentage > latestPercentage) changeNextImage(posX + percentage);
+  else changePrevImage(posX + percentage);
+};
+
 export const resetLatestImage = () => {
-  removeClass(CLASS_NAME.active, latestImage.elem);
-  initlatestImage();
-  addClass(CLASS_NAME.active, latestImage.elem);
+  changeClassAndimage(initlatestImage);
 };
 
 export const initImageChanger = () => {

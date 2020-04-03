@@ -1,6 +1,6 @@
 import { _q, addClass, removeClass, addMultipleEventListener } from "../utils/utils";
 import { CLASS_NAME, FORECAST_PLAY_BUTTON_ICON, IMAGE_PLAY_SPEED, IMAGE_LOOP_INTERVAL, MAX_PERCENTAGE } from "../utils/constants";
-import { changeImage, resetLatestImage } from "./imageChanger";
+import { changeImage, changeNextImage, resetLatestImage } from "./imageChanger";
 
 const progressBarElem = {
   wrap: _q(`.${CLASS_NAME.progressBarWrap}`),
@@ -16,6 +16,7 @@ let pbAnimation = null;
 let loopTimer = null;
 let isAnimationPlayable = true;
 let touchStartPosX = null;
+let latestPercentage = 0;
 
 const setProgressBarPosX = posX => {
   progressBarElem.controlButton.style.left = `${posX}%`;
@@ -48,7 +49,7 @@ const progressAnimation = () => {
     progressPosX += IMAGE_PLAY_SPEED;
     setProgressBarPosX(progressPosX);
     pbAnimation = window.requestAnimationFrame(progressAnimation);
-    changeImage(progressPosX);
+    changeNextImage(progressPosX);
     return;
   }
   loopTimer = setTimeout(() => {
@@ -69,12 +70,19 @@ const toggleProgressAnimation = event => {
   togglePlayButtonState();
 };
 
-const changeProgressBarWidth = posX => {
+const convertPercentagePosX = posX => {
   const barWidth = progressBarElem.bar.offsetWidth;
   const percentage = Math.floor((posX / barWidth) * MAX_PERCENTAGE);
+  return percentage;
+};
+
+const changeProgressBarWidth = posX => {
+  const percentage = convertPercentagePosX(posX);
   const sumPercentage = progressPosX + percentage;
   if (sumPercentage >= MAX_PERCENTAGE || sumPercentage <= 0) return;
   moveProgressBar(percentage);
+  changeImage(percentage, latestPercentage, progressPosX);
+  latestPercentage = percentage;
 };
 
 const setTouchStartPosX = event => {
