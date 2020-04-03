@@ -37,7 +37,8 @@ public class PublicAPIUtils {
         return forecastObject;
     }
 
-    public static JsonNode getDailyDustStatusJSONArray(String stationName) throws URISyntaxException, JsonProcessingException {
+    public static List<DustStatus> getDailyDustStatusJSONArray(String stationName) throws URISyntaxException, JsonProcessingException {
+        List<DustStatus> dustStatusList = new ArrayList<>();
         URI publicApiRequestUrl = new URI(PUBLIC_API_REALTIME_MEASURE_URL + stationName
                 + AND_DATA_TERM_DAILY + AND_PAGE_NO_1 + AND_NUM_OF_ROWS_24 + AND_SERVICE_KEY + PUBLIC_API_SERVICE_KEY
                 + AND_VERSION + 1.3 + AND_RETURN_TYPE_JSON);
@@ -50,7 +51,12 @@ public class PublicAPIUtils {
         JsonNode dustStatuses = mapper.readTree(response).get("list");
         log.debug("dustStatuses: {}", dustStatuses);
 
-        return dustStatuses;
+        for (JsonNode dustStatusObject : dustStatuses) {
+            dustStatusList.add(new DustStatus(dustStatusObject));
+        }
+        log.debug("dustStatusList: {}", dustStatusList);
+
+        return dustStatusList;
     }
 
     public static StationLocation getNearestStationLocation(JsonNode transResultJSONObject) throws URISyntaxException, JsonProcessingException {
