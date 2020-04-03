@@ -1,8 +1,9 @@
 import { API_URL } from "../utils/constants";
 import { renderStatus, renderStationName, showErrorMessage } from "./dustStatus";
 import { renderGraph, addGraphScrollEvent } from "./graph";
-import { renderForecast, forecastContents } from "./forecast";
+import { renderForecast } from "./forecast";
 import addProgressBarTouchEvent from "./progressBar";
+import { initImageChanger } from "./imageChanger";
 
 const isDataValid = data => data.pm10Value >= 0;
 
@@ -41,6 +42,7 @@ export const getForecast = () => {
     .then(response => response.json())
     .then(forecastData => {
       renderForecast(forecastData);
+      initImageChanger();
       addProgressBarTouchEvent();
     });
 };

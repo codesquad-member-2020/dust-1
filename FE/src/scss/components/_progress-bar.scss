@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem 0 2rem 0;
 
   button {
     width: $button-size;
@@ -10,6 +10,7 @@
   }
 
   .play-btn {
+    width: calc(#{$button-size} + 0.5rem);
     border-radius: $border-radius;
     background-color: $blue;
     &.playing {
@@ -41,8 +42,8 @@
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
-    border-radius: calc(#{$button-size}/ 2);
-    border: 1px solid $grey-1;
     background-color: $white;
+    border-radius: calc(#{$button-size}/ 2);
+    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23));
   }
 }
