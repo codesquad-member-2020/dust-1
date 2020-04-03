@@ -35,6 +35,7 @@ export const CLASS_NAME = {
   playing: "playing",
   loadingPage: "loading-page",
   loadingIcon: "loading-icon",
+  table: "table",
 };
 
 export const STATUS_STRING = {
@@ -119,4 +120,12 @@ export const LOADING_ICON = "💨";
 
 export const LOADING_DELAY = 300;
 
-export const INFORM_REGEX = /○ \[미세먼지\]\s/;
+export const INFORM_REGEX = {
+  overall: /○ \[미세먼지\]\s/,
+  whitespace: /\s/gi,
+  specialCharacters: /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi,
+};
+
+export const TABLE_HEAD_TEXT = "<thead><tr><th>지역</th><th>예보</th><th>지역</th><th>예보</th></tr></thead>";
+
+export const TABLE_COLUMN = 4;

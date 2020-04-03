@@ -26,20 +26,34 @@
   }
 }
 
-.forecast-inform-overall,
-.forecast-inform-grade {
-  line-height: 1.4;
+table {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: $bottom-gap;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+}
+
+th {
+  background-color: $grey-2;
+  border-top: 1px solid $grey-1;
+}
+
+th,
+td {
+  width: 25%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid $grey-1;
+}
+
+tr {
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .forecast-inform-overall {
   font-size: 1.125rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.forecast-inform-grade {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: $grey-0;
-  margin-bottom: $bottom-gap;
+  line-height: 1.4;
 }
