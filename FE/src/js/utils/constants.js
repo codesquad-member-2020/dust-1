@@ -33,6 +33,8 @@ export const CLASS_NAME = {
   active: "active",
   hidden: "hidden",
   playing: "playing",
+  loadingPage: "loading-page",
+  loadingIcon: "loading-icon",
 };
 
 export const STATUS_STRING = {
@@ -112,3 +114,7 @@ export const getGradeText = grade => {
   };
   return gradeText[grade] || null;
 };
+
+export const LOADING_ICON = "💨";
+
+export const LOADING_DELAY = 300;
