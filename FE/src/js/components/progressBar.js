@@ -1,6 +1,6 @@
-import { _q, addClass, removeClass, hasClass, addMultipleEventListener, clearClass } from "../utils/utils";
+import { _q, addClass, removeClass, addMultipleEventListener } from "../utils/utils";
 import { CLASS_NAME, FORECAST_PLAY_BUTTON_ICON, IMAGE_PLAY_SPEED, IMAGE_LOOP_INTERVAL, MAX_PERCENTAGE } from "../utils/constants";
-import { forecastImages, selectViewImage } from "./forecast";
+import { changeImage, changeNextImage, resetLatestImage } from "./imageChanger";
 
 const progressBarElem = {
   wrap: _q(`.${CLASS_NAME.progressBarWrap}`),
@@ -16,12 +16,7 @@ let pbAnimation = null;
 let loopTimer = null;
 let isAnimationPlayable = true;
 let touchStartPosX = null;
-
-const selectImageIndex = images => {};
-
-const controlImages = () => {
-  // latestImg = 이 전역변수에 여기에 이미지 변경한 인덱스 이미지를 담고, 다음에 이 이미지의 클래스를 삭제.
-};
+let latestPercentage = 0;
 
 const setProgressBarPosX = posX => {
   progressBarElem.controlButton.style.left = `${posX}%`;
@@ -30,7 +25,7 @@ const setProgressBarPosX = posX => {
 
 const moveProgressBar = percentage => setProgressBarPosX(progressPosX + percentage);
 
-const changePlayButtonState = () => {
+const togglePlayButtonState = () => {
   if (isAnimationPlayable) {
     isAnimationPlayable = false;
     addClass(CLASS_NAME.playing, progressBarElem.playButton);
@@ -54,9 +49,13 @@ const progressAnimation = () => {
     progressPosX += IMAGE_PLAY_SPEED;
     setProgressBarPosX(progressPosX);
     pbAnimation = window.requestAnimationFrame(progressAnimation);
+    changeNextImage(progressPosX);
     return;
   }
-  loopTimer = setTimeout(() => resetProgressAnimation(progressAnimation), IMAGE_LOOP_INTERVAL);
+  loopTimer = setTimeout(() => {
+    resetProgressAnimation(progressAnimation);
+    resetLatestImage();
+  }, IMAGE_LOOP_INTERVAL);
 };
 
 const stopProgressAnimation = () => {
@@ -66,22 +65,30 @@ const stopProgressAnimation = () => {
 
 const toggleProgressAnimation = event => {
   event.preventDefault();
-  isAnimationPlayable ? progressAnimation() : stopProgressAnimation();
-  changePlayButtonState();
+  if (isAnimationPlayable) progressAnimation();
+  else stopProgressAnimation();
+  togglePlayButtonState();
+};
+
+const convertPercentagePosX = posX => {
+  const barWidth = progressBarElem.bar.offsetWidth;
+  const percentage = Math.floor((posX / barWidth) * MAX_PERCENTAGE);
+  return percentage;
 };
 
 const changeProgressBarWidth = posX => {
-  const barWidth = progressBarElem.bar.offsetWidth;
-  const percentage = Math.floor((posX / barWidth) * MAX_PERCENTAGE);
+  const percentage = convertPercentagePosX(posX);
   const sumPercentage = progressPosX + percentage;
   if (sumPercentage >= MAX_PERCENTAGE || sumPercentage <= 0) return;
   moveProgressBar(percentage);
+  changeImage(percentage, latestPercentage, progressPosX);
+  latestPercentage = percentage;
 };
 
 const setTouchStartPosX = event => {
   isAnimationPlayable = false;
   stopProgressAnimation();
-  changePlayButtonState();
+  togglePlayButtonState();
   touchStartPosX = event.touches[0].clientX;
 };
 

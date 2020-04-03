@@ -27,10 +27,27 @@ $button-size: 3rem;
 $button-gap: 20px;
 
 $graph-height: 20px;
+$IMG_MAX_WIDTH: 800px;
 
 // mixin
 @mixin appearance-none {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+@mixin box-shadow($arg...) {
+  -webkit-box-shadow: $arg;
+  -moz-box-shadow: $arg;
+  -ms-box-shadow: $arg;
+  -o-box-shadow: $arg;
+  box-shadow: $arg;
+}
+
+@mixin transition($arg...) {
+  -webkit-transition: $arg;
+  -moz-transition: $arg;
+  -ms-transition: $arg;
+  -o-transition: $arg;
+  transition: $arg;
 }

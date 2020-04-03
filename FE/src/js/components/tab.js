@@ -1,5 +1,5 @@
-import { CLASS_NAME } from "../utils/constants";
 import { _q, reverseClass, addMultipleEventListener } from "../utils/utils";
+import { CLASS_NAME } from "../utils/constants";
 import { dustContents } from "./dustStatus";
 import { forecastContents } from "./forecast";
 

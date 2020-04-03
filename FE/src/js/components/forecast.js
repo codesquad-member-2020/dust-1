@@ -18,14 +18,14 @@ const forecastImageContent = images =>
     return imageElement;
   }, "");
 
-export const selectViewImage = (images, index = 0) => addClass(CLASS_NAME.active, images[index]);
+export const selectViewImage = (images, index = 0) => images[index];
 
 export const renderForecast = forecastData => {
   const { informOverall, informGrade, images } = forecastData;
   forecastElem.inform.innerHTML = forecastInformContent(informOverall, informGrade);
   forecastElem.imagesWrap.innerHTML = forecastImageContent(images);
   forecastElem.images = _qa(`.${CLASS_NAME.forecastImage}`);
-  selectViewImage(forecastElem.images);
+  addClass(CLASS_NAME.active, selectViewImage(forecastElem.images));
 };
 
-export const forcastImages = () => forecastElem.images;
+export const forecastImages = () => forecastElem.images;
