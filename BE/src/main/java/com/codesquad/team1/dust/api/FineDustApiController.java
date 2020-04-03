@@ -1,5 +1,7 @@
 package com.codesquad.team1.dust.api;
 
+import com.codesquad.team1.dust.aggregate.DailyDustStatusJson;
+import com.codesquad.team1.dust.aggregate.DailyDustStatusJsonRepository;
 import com.codesquad.team1.dust.domain.DustStatus;
 import com.codesquad.team1.dust.domain.Forecast;
 import com.codesquad.team1.dust.domain.Image;
@@ -9,6 +11,7 @@ import com.codesquad.team1.dust.util.KakaoAPIUtils;
 import com.codesquad.team1.dust.util.PublicAPIUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +22,19 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 public class FineDustApiController {
 
     private static final Logger log = LoggerFactory.getLogger(FineDustApiController.class);
+
+    private final DailyDustStatusJsonRepository dailyDustStatusJsonRepository;
+
+    public FineDustApiController(DailyDustStatusJsonRepository dailyDustStatusJsonRepository) {
+        this.dailyDustStatusJsonRepository = dailyDustStatusJsonRepository;
+    }
 
     @GetMapping("/locations")
     public List<StationLocation> showStationLocations() {
@@ -38,13 +49,31 @@ public class FineDustApiController {
     }
 
     @GetMapping("/{stationName}/daily-dust-status")
-    public List<DustStatus> showDailyDustStatus(@PathVariable String stationName) throws URISyntaxException, JsonProcessingException {
-        List<DustStatus> dustStatusList = PublicAPIUtils.getDailyDustStatusJSONArray(stationName);
+    public List<DustStatus> showDailyDustStatus(@PathVariable String stationName) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<DustStatus> dustStatusList = new ArrayList<>();
+        Optional<String> nullableDustStatusJson = dailyDustStatusJsonRepository.findLatestDailyDustStatus(stationName);
+        String dustStatus = nullableDustStatusJson.orElseThrow(NoSuchElementException::new);
+        JsonNode dustStatuses = mapper.readTree(dustStatus);
 
+        for (JsonNode dustStatusObject : dustStatuses) {
+            dustStatusList.add(new DustStatus(dustStatusObject));
+        }
         log.debug("stationName: {}", stationName);
         log.debug("dustStatusList: {}", dustStatusList);
 
         return dustStatusList;
+    }
+
+    @GetMapping("/force-update/{stationName}/daily-dust-status")
+    public boolean forceUpdateDailyDustStatus(@PathVariable String stationName) throws URISyntaxException, JsonProcessingException {
+        log.debug("daily-dust-status 강제 업데이트 시작");
+
+        JsonNode dustStatuses = PublicAPIUtils.getDailyDustStatusJSONArray(stationName);
+        dailyDustStatusJsonRepository.save(new DailyDustStatusJson(stationName, dustStatuses));
+
+        log.debug("daily-dust-status 강제 업데이트 종료");
+        return true;
     }
 
     @GetMapping("/location/@={latitude},{longitude}")
@@ -78,7 +107,12 @@ public class FineDustApiController {
         StationLocation stationLocation = PublicAPIUtils.getNearestStationLocation(KakaoAPIUtils.getTmCoordinateSystem(latitude, longitude));
         log.debug("stationLocation: {}", stationLocation);
 
-        List<DustStatus> dustStatusList = PublicAPIUtils.getDailyDustStatusJSONArray(stationLocation.getStationName());
+        List<DustStatus> dustStatusList = new ArrayList<>();
+        JsonNode dustStatuses = PublicAPIUtils.getDailyDustStatusJSONArray(stationLocation.getStationName());
+
+        for (JsonNode dustStatusObject : dustStatuses) {
+            dustStatusList.add(new DustStatus(dustStatusObject));
+        }
         log.debug("dustStatusList: {}", dustStatusList);
 
         return dustStatusList;
