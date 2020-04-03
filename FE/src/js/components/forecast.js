@@ -1,5 +1,5 @@
 import { _q, _qa, addClass } from "../utils/utils";
-import { CLASS_NAME, FORECAST_IMG_ALT } from "../utils/constants";
+import { CLASS_NAME, FORECAST_IMG_ALT, INFORM_REGEX } from "../utils/constants";
 
 export const forecastContents = _q(`.${CLASS_NAME.forecastContents}`);
 
@@ -22,7 +22,8 @@ export const selectViewImage = (images, index = 0) => images[index];
 
 export const renderForecast = forecastData => {
   const { informOverall, informGrade, images } = forecastData;
-  forecastElem.inform.innerHTML = forecastInformContent(informOverall, informGrade);
+  const filteredInformOverall = informOverall.replace(INFORM_REGEX, "");
+  forecastElem.inform.innerHTML = forecastInformContent(filteredInformOverall, informGrade);
   forecastElem.imagesWrap.innerHTML = forecastImageContent(images);
   forecastElem.images = _qa(`.${CLASS_NAME.forecastImage}`);
   addClass(CLASS_NAME.active, selectViewImage(forecastElem.images));

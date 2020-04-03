@@ -118,3 +118,5 @@ export const getGradeText = grade => {
 export const LOADING_ICON = "💨";
 
 export const LOADING_DELAY = 300;
+
+export const INFORM_REGEX = /○ \[미세먼지\]\s/;
