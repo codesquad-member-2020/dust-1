@@ -4,6 +4,7 @@ import { renderGraph, addGraphScrollEvent } from "./graph";
 import { renderForecast } from "./forecast";
 import addProgressBarTouchEvent from "./progressBar";
 import { initImageChanger } from "./imageChanger";
+import { removeLoadingPage } from "./loadingPage";
 
 const isDataValid = data => data.pm10Value >= 0;
 
@@ -18,6 +19,7 @@ export const getDailyDustStatus = stationName => {
       renderStatus(latestDustData);
       renderGraph(dustData);
       addGraphScrollEvent(renderStatus, dustData);
+      removeLoadingPage();
     })
     .catch(() => showErrorMessage());
 };
