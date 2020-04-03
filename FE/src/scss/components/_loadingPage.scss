@@ -8,7 +8,7 @@
   height: 100vh;
   background-color: $white;
   opacity: 1;
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   &.hidden {
     opacity: 0;
   }
