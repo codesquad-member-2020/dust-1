@@ -11,7 +11,7 @@ import UIKit
 class MicroDustTableViewDelegate: NSObject, UITableViewDelegate {
     
     static let MicroFirstCellIndexNotification = NSNotification.Name(rawValue: "MicroFirstCellIndexNotification")
-    private var firstCell = 0
+    private var firstCell = IndexPath(row: 0, section: 0)
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let tableView = scrollView as? UITableView else { return }
@@ -19,7 +19,7 @@ class MicroDustTableViewDelegate: NSObject, UITableViewDelegate {
         // Send Notification with Data
         var firstCellIndexPath = tableView.indexPathsForVisibleRows?.first
         guard let firstIndexCell = firstCellIndexPath?.row else { return }
-        self.firstCell = firstIndexCell
+        self.firstCell.row = firstIndexCell
         sendNotification()
     }
     

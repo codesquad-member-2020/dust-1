@@ -85,8 +85,8 @@ class MicroDustViewController: UIViewController {
         dateTimeLabel.text = nil
         locationLabel.text = nil
 
-        guard let firstIndexCell = notification.userInfo?["firstCellIndex"] as? Int else { return }
-            let firstCell = self.microDustTableView.subviews[firstIndexCell] as? MicroDustTableViewCell
+        guard let firstIndexCell = notification.userInfo?["firstCellIndex"] as? IndexPath else { return }
+        let firstCell = self.microDustTableView.cellForRow(at: firstIndexCell) as? MicroDustTableViewCell
         guard let figure = firstCell?.figureValue else { return }
             self.figureLabel.text = figure
         guard let givenDateTime =  firstCell?.dateTime else { return }
