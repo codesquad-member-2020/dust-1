@@ -5,18 +5,26 @@
   max-width: $MAX_WIDTH;
   button {
     float: left;
+    position: relative;
     display: flex;
     width: 50%;
     height: $tab-height;
     justify-content: center;
     align-items: center;
-    font-size: 1.125rem;
+    font-size: 1rem;
     background-color: $white;
     border-bottom: 1px solid $grey-1;
     &.active {
       font-weight: bold;
-      color: $blue;
-      text-decoration: underline;
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 50%;
+        height: 4px;
+        background-color: $black;
+      }
     }
   }
 }
