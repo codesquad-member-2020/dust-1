@@ -12,6 +12,8 @@
 		6A1AC9162433284000022B10 /* MicroDustViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC9152433284000022B10 /* MicroDustViewController.swift */; };
 		6A1AC9172433284000022B10 /* MicroDustViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC9152433284000022B10 /* MicroDustViewController.swift */; };
 		6A340A6C24348F74000EEC99 /* FigureValueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A340A6B24348F74000EEC99 /* FigureValueLabel.swift */; };
+		6A340A6E243603D8000EEC99 /* ConditionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A340A6D243603D8000EEC99 /* ConditionLabel.swift */; };
+		6A340A72243615B8000EEC99 /* MicroDustTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A340A71243615B8000EEC99 /* MicroDustTableViewDelegate.swift */; };
 		6A6857FD24320C6900EA4F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6857FC24320C6900EA4F24 /* AppDelegate.swift */; };
 		6A6857FF24320C6900EA4F24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6857FE24320C6900EA4F24 /* SceneDelegate.swift */; };
 		6A68580424320C6900EA4F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A68580224320C6900EA4F24 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 		6ACE83DD2432547F00EEBF85 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACE83DB2432547F00EEBF85 /* BackgroundView.swift */; };
 		6ACE83DF2432646200EEBF85 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACE83DE2432646200EEBF85 /* ForecastViewController.swift */; };
 		6ACE83E02432646200EEBF85 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACE83DE2432646200EEBF85 /* ForecastViewController.swift */; };
+		6AF3B9FD24366A5D000AACC4 /* ForecastDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3B9FC24366A5D000AACC4 /* ForecastDataManager.swift */; };
+		6AF3B9FF2436FA9C000AACC4 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3B9FE2436FA9C000AACC4 /* LocationDataManager.swift */; };
 		6AF7CE2B24338A8A00A6F5E6 /* MicroDustTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF7CE2A24338A8A00A6F5E6 /* MicroDustTableViewCell.swift */; };
 		6AF7CE2F243391C500A6F5E6 /* MicroDustDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF7CE2E243391C500A6F5E6 /* MicroDustDataManager.swift */; };
 		6AF7CE312433920E00A6F5E6 /* MicroDustInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF7CE302433920E00A6F5E6 /* MicroDustInfo.swift */; };
@@ -42,6 +46,8 @@
 		6A1AC9122433251C00022B10 /* MicroDustTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicroDustTableDataSource.swift; path = DustProject/Model/MicroDustTableDataSource.swift; sourceTree = SOURCE_ROOT; };
 		6A1AC9152433284000022B10 /* MicroDustViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicroDustViewController.swift; path = DustProject/Controller/MicroDustViewController.swift; sourceTree = SOURCE_ROOT; };
 		6A340A6B24348F74000EEC99 /* FigureValueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FigureValueLabel.swift; path = DustProject/View/FigureValueLabel.swift; sourceTree = SOURCE_ROOT; };
+		6A340A6D243603D8000EEC99 /* ConditionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConditionLabel.swift; path = DustProject/View/ConditionLabel.swift; sourceTree = SOURCE_ROOT; };
+		6A340A71243615B8000EEC99 /* MicroDustTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicroDustTableViewDelegate.swift; path = DustProject/Model/MicroDustTableViewDelegate.swift; sourceTree = SOURCE_ROOT; };
 		6A6857F924320C6900EA4F24 /* dustProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dustProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6857FC24320C6900EA4F24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A6857FE24320C6900EA4F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +60,8 @@
 		6A68581524320C6A00EA4F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ACE83DB2432547F00EEBF85 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BackgroundView.swift; path = DustProject/View/BackgroundView.swift; sourceTree = SOURCE_ROOT; };
 		6ACE83DE2432646200EEBF85 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForecastViewController.swift; path = DustProject/Controller/ForecastViewController.swift; sourceTree = SOURCE_ROOT; };
+		6AF3B9FC24366A5D000AACC4 /* ForecastDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForecastDataManager.swift; path = DustProject/Model/ForecastDataManager.swift; sourceTree = SOURCE_ROOT; };
+		6AF3B9FE2436FA9C000AACC4 /* LocationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationDataManager.swift; path = DustProject/Model/LocationDataManager.swift; sourceTree = SOURCE_ROOT; };
 		6AF7CE2A24338A8A00A6F5E6 /* MicroDustTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicroDustTableViewCell.swift; path = DustProject/View/MicroDustTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		6AF7CE2E243391C500A6F5E6 /* MicroDustDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicroDustDataManager.swift; path = DustProject/Model/MicroDustDataManager.swift; sourceTree = SOURCE_ROOT; };
 		6AF7CE302433920E00A6F5E6 /* MicroDustInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicroDustInfo.swift; path = DustProject/Model/MicroDustInfo.swift; sourceTree = SOURCE_ROOT; };
@@ -85,6 +93,7 @@
 				6AF7CE2A24338A8A00A6F5E6 /* MicroDustTableViewCell.swift */,
 				6AF7CE322434735200A6F5E6 /* PercentageView.swift */,
 				6A340A6B24348F74000EEC99 /* FigureValueLabel.swift */,
+				6A340A6D243603D8000EEC99 /* ConditionLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,6 +113,9 @@
 				6A1AC9122433251C00022B10 /* MicroDustTableDataSource.swift */,
 				6AF7CE2E243391C500A6F5E6 /* MicroDustDataManager.swift */,
 				6AF7CE302433920E00A6F5E6 /* MicroDustInfo.swift */,
+				6A340A71243615B8000EEC99 /* MicroDustTableViewDelegate.swift */,
+				6AF3B9FC24366A5D000AACC4 /* ForecastDataManager.swift */,
+				6AF3B9FE2436FA9C000AACC4 /* LocationDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,8 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF3B9FD24366A5D000AACC4 /* ForecastDataManager.swift in Sources */,
 				6AF7CE332434735200A6F5E6 /* PercentageView.swift in Sources */,
 				6A1AC9132433251C00022B10 /* MicroDustTableDataSource.swift in Sources */,
+				6A340A6E243603D8000EEC99 /* ConditionLabel.swift in Sources */,
+				6AF3B9FF2436FA9C000AACC4 /* LocationDataManager.swift in Sources */,
 				6A6857FD24320C6900EA4F24 /* AppDelegate.swift in Sources */,
 				6A1AC9162433284000022B10 /* MicroDustViewController.swift in Sources */,
 				6AF7CE2B24338A8A00A6F5E6 /* MicroDustTableViewCell.swift in Sources */,
@@ -262,6 +277,7 @@
 				6ACE83DF2432646200EEBF85 /* ForecastViewController.swift in Sources */,
 				6ACE83DC2432547F00EEBF85 /* BackgroundView.swift in Sources */,
 				6AF7CE312433920E00A6F5E6 /* MicroDustInfo.swift in Sources */,
+				6A340A72243615B8000EEC99 /* MicroDustTableViewDelegate.swift in Sources */,
 				6A6857FF24320C6900EA4F24 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

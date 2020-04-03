@@ -32,3 +32,18 @@ struct MicroDustInfo: Decodable {
     let pm10Value: String
     let dateTime: String
 }
+
+struct LocationInfo: Decodable {
+    let stationName: String
+    let location: String
+}
+
+struct AtmosphericImageInfo: Codable {
+    let informOverall: String
+    let informGrade: String
+    let images: [ImageInfo]
+}
+
+struct ImageInfo: Codable {
+    let imageUrl: String
+}

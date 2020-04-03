@@ -10,9 +10,7 @@ import UIKit
 
 class MicroDustTableDataSource: NSObject, UITableViewDataSource {
     
-    let totalWidth = CGFloat(200.0)
-    static let MicroDustInfoNotification = NSNotification.Name(rawValue: "MicroDustInfoNotification")
-    
+    private let totalWidth = CGFloat(200.0)
     private let microDustDataManager = MicroDustDataManager()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,19 +20,30 @@ class MicroDustTableDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MicroDustTableViewCell.identifier, for: indexPath) as! MicroDustTableViewCell
-        let figureValue =  microDustDataManager.giveFigureData(for: indexPath.item)
-        let dateTime = microDustDataManager.giveDateTImeData(for: indexPath.item)
-        let grade = microDustDataManager.giveGradeData(for: indexPath.item)
         
+        // Bring Data
+        var figureValue =  microDustDataManager.giveFigureData(for: indexPath.item)
+        var dateTime = microDustDataManager.giveDateTImeData(for: indexPath.item)
+        let givenGrade = microDustDataManager.giveGradeData(for: indexPath.item)
+        
+        // Deal with nil value
+        if figureValue == "-1" || dateTime == nil {
+            figureValue = " X "
+            dateTime = " X "
+        }
+        var grade = Grade(rawValue: givenGrade)
+        if grade == nil {
+            grade = .None
+        }
+        
+        // Setup views in cell
         cell.figureValueLabel.text = figureValue
-        let grades = Grade(rawValue: grade)
-        let percentageColor = self.setCellBackground(grade: grades!)
-        
+        let percentageColor = self.setCellBackground(grade: grade!)
         cell.percentageView.backgroundColor = percentageColor
-
         let floatValue = CGFloat(NSString(string: figureValue).floatValue)
         let fillWidth : CGFloat = (floatValue / totalWidth) * cell.frame.size.width
         cell.setPercentage(fillWidth)
+        cell.updateViewInformation(figureValue: figureValue, dateTime: dateTime, grade: grade!)
         return cell
     }
     

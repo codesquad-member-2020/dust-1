@@ -9,10 +9,10 @@
 import Foundation
 
 class MicroDustDataManager{
-        let microDustURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/%EA%B0%95%EB%82%A8%EA%B5%AC/daily-dust-status"
+    
+    private let microDustURL = "http://ec2-15-164-254-158.ap-northeast-2.compute.amazonaws.com:8080/%EA%B0%95%EB%82%A8%EA%B5%AC/daily-dust-status"
     
     static let MicroDustDecodedNotification = NSNotification.Name("MicroDustDecodedNotification")
-    
     private(set) var microDustInfo: [MicroDustInfo]?
     
     init() {
@@ -34,7 +34,7 @@ class MicroDustDataManager{
     }
     
     func giveDateTImeData(for index: Int) -> String {
-        guard let microDustInfo = microDustInfo?[index] else {return "" }
+        guard let microDustInfo = microDustInfo?[index] else { return "" }
         return microDustInfo.dateTime
     }
     
@@ -46,10 +46,14 @@ class MicroDustDataManager{
             let decoder = JSONDecoder()
             do{
                 self.microDustInfo = try decoder.decode([MicroDustInfo].self, from: data)
-                NotificationCenter.default.post(name: MicroDustDataManager.MicroDustDecodedNotification, object: nil)
+                self.sendNotification()
             } catch {
                 self.microDustInfo = nil
             }
         }.resume()
+    }
+    
+    private func sendNotification() {
+        NotificationCenter.default.post(name: MicroDustDataManager.MicroDustDecodedNotification, object: nil)
     }
 }
