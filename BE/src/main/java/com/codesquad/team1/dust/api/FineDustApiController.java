@@ -70,4 +70,17 @@ public class FineDustApiController {
         return forecast;
     }
 
+    @GetMapping("/daily-dust-status/@={latitude},{longitude}")
+    public List<DustStatus> showDailyDustStatusOfGPS(@PathVariable String latitude,
+                                                     @PathVariable String longitude) throws URISyntaxException, JsonProcessingException {
+        log.debug("위도: {}, 경도: {}", latitude, longitude);
+
+        StationLocation stationLocation = PublicAPIUtils.getNearestStationLocation(KakaoAPIUtils.getTmCoordinateSystem(latitude, longitude));
+        log.debug("stationLocation: {}", stationLocation);
+
+        List<DustStatus> dustStatusList = PublicAPIUtils.getDailyDustStatusJSONArray(stationLocation.getStationName());
+        log.debug("dustStatusList: {}", dustStatusList);
+
+        return dustStatusList;
+    }
 }
