@@ -1,0 +1,29 @@
+.loading-page {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: $white;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.loading-icon {
+  animation: bounce 0.7s ease alternate infinite;
+  font-size: 5rem;
+}
+
+@keyframes bounce {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}

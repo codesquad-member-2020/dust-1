@@ -1,0 +1,59 @@
+.forecast-wrap {
+  background-color: $white;
+}
+
+.forecast {
+  box-sizing: border-box;
+  padding-top: 2rem;
+}
+
+.forecast-title {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.forecast-image {
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  max-width: $IMG_MAX_WIDTH;
+  box-sizing: border-box;
+  border: 1px solid $grey-1;
+  &.active {
+    display: block;
+  }
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: $bottom-gap;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+}
+
+th {
+  background-color: $grey-2;
+  border-top: 1px solid $grey-1;
+}
+
+th,
+td {
+  width: 25%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid $grey-1;
+}
+
+tr {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.forecast-inform-overall {
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 1.4;
+}

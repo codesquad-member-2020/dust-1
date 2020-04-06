@@ -1,0 +1,29 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: $white;
+  color: $black;
+}
+
+.wrap {
+  width: 100%;
+  max-width: $MAX_WIDTH;
+  height: calc(100vh - #{$tab-height});
+  margin: 0 auto;
+}
+
+.dust-wrap,
+.forecast-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 $wrap-padding;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>미세먼지 앱</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tab-dust active">미세먼지</button>
+      <button class="tab-forecast">예보</button>
+    </div>
+    <div class="wrap">
+      <header><h1>미세먼지 앱</h1></header>
+      <div class="dust-wrap hidden">
+        <div class="dust">
+          <h2 class="dust-title">미세먼지 현황</h2>
+          <span class="dust-emoji"></span>
+          <h3 class="dust-grade"></h3>
+          <div class="dust-value-wrap">
+            <span class="dust-value"></span>
+            <span class="dust-time"></span>
+          </div>
+        </div>
+        <span class="dust-station"></span>
+        <div class="dust-graph-wrap">
+          <div class="dust-graph"></div>
+        </div>
+      </div>
+      <div class="forecast-wrap">
+        <div class="forecast">
+          <h2 class="forecast-title">미세먼지 예보</h2>
+          <div class="forecast-images-wrap"></div>
+          <div class="progress-bar-wrap">
+            <button class="play-btn">
+              <span class="material-icons">play_arrow</span>
+            </button>
+            <div class="progress-bar">
+              <div class="current-progress"></div>
+              <button class="control-btn"></button>
+            </div>
+          </div>
+          <div class="forecast-inform"></div>
+          <table></table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

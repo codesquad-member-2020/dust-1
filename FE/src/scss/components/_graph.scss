@@ -1,0 +1,61 @@
+.dust-graph {
+  height: 100%;
+  overflow-y: scroll;
+  touch-action: pan-y;
+}
+
+.graph-wrap {
+  position: relative;
+  width: 100%;
+  height: $graph-height;
+  box-sizing: border-box;
+  & + .graph-wrap {
+    border-top: 1px solid $white;
+  }
+}
+
+.graph {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $red;
+  .value {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-4px, 1px);
+    color: $white;
+  }
+  &.good {
+    background-color: $blue;
+  }
+  &.normal {
+    background-color: $green;
+  }
+  &.bad {
+    background-color: $orange;
+  }
+  &.very-bad {
+    background-color: $red;
+  }
+}
+
+.placeholder {
+  position: relative;
+  width: 100%;
+  height: calc(100% - #{$graph-height});
+  &::after {
+    content: "최근 24시간 데이터만 볼 수 있어요";
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: $grey-1;
+  }
+}

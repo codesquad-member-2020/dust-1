@@ -1,0 +1,49 @@
+.progress-bar-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 2rem 0;
+
+  button {
+    width: $button-size;
+    height: $button-size;
+  }
+
+  .play-btn {
+    width: calc(#{$button-size} + 0.5rem);
+    border-radius: $border-radius;
+    background-color: $blue;
+    &.playing {
+      background-color: $grey-0;
+    }
+  }
+
+  .material-icons {
+    color: $white;
+  }
+
+  .progress-bar {
+    position: relative;
+    width: calc(100% - ((#{$button-size} * 2) + #{$button-gap}));
+    height: 4px;
+    margin-right: calc(#{$button-size}/ 2);
+    background-color: $grey-1;
+  }
+
+  .current-progress {
+    position: absolute;
+    width: 0;
+    height: 4px;
+    background-color: $blue;
+  }
+
+  .control-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    border-radius: calc(#{$button-size}/ 2);
+    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23));
+  }
+}
